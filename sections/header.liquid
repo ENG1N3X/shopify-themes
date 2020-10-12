@@ -1,0 +1,32 @@
+<div class="header">
+    <div class="grid-container">
+        <div class="grid-x align-justify align-middle">
+            <nav class="grid-x align-middle">
+                {% for link in linklists[section.settings.header_nav].links %}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                {% endfor %}
+            </nav>
+            <div class="grid-x align-middle">
+                {% if customer %}
+                    <a href="/account">Account</a>
+                    <a href="/account/logout">Logout</a>
+                {% else %}
+                    <a href="/account">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Header",
+    "settings": [
+        {
+            "type": "link_list",
+            "id": "header_nav",
+            "label": "Header navigation",
+            "default": "main-menu"
+        }
+    ]
+}
+{% endschema %}

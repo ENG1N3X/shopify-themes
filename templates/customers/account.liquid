@@ -1,0 +1,78 @@
+<div class="customer_page">
+    {% if customer %}
+        <div class="grid-container fluid">
+            <div class="grid-x align-right">
+                <a href="/account" class="link">
+                    {{ customer.first_name }} ({{ customer.email }})
+                </a>
+            </div>
+            <div class="grid-x align-justify" style="margin-bottom: 20px;">
+                <h2 class="title" style="margin: 0;">Account</h2>
+                <nav class="nav">
+                    <a href="/account/addresses">Addresess</a>
+                    <a class="link" href="/account/logout">Logout</a>
+                </nav>
+            </div>
+            <div class="grid-x">
+                <h3 class="title sub">Orders</h3>
+            </div>
+            <div class="grid-x" style="overflow-x: auto;">
+                {% paginate customer.orders by 10 %}
+                    <div class="cell" style="min-width: 500px;">
+                        <div class="grid-x" style="padding: 10px 5px;">
+                            <div class="cell auto">
+                                Name
+                            </div>
+                            <div class="cell auto">
+                                Status
+                            </div>
+                            <div class="cell auto">
+                                Total
+                            </div>
+                            <div class="cell auto">
+                                Created
+                            </div>
+                        </div>
+                        {% for order in customer.orders %}
+                            <div class="grid-x" style="width: 100%; padding: 10px 5px;">
+                                <div class="cell auto">
+                                    {{ order.name }}
+                                </div>
+                                <div class="cell auto">
+                                    {{ order.financial_status }}
+                                </div>
+                                <div class="cell auto">
+                                    {{ order.total_price | money}}
+                                </div>
+                                <div class="cell auto">
+                                    {{ order.created_at | time_tag: format: "date_at_time"}}
+                                </div>
+                            </div>
+                        {% else %}
+                            <p class="text">You haven't placed any orders yet.</p>
+                        {% endfor %}
+                    </div>
+                    {% if paginate.pages > 1 %}
+                        <div class="grid-x cell align-center align-middle">
+                            {% if paginate.previous.is_link %}
+                                <a href="{{ paginate.previous.url }}" class="btn btn-paginate">
+                                    <img src="{{ 'icon-arrow-left-6.svg' | file_url }}" width="36" alt="{{ page_title }}">
+                                </a>
+                            {% endif %}
+                            {% if paginate.next.is_link %}
+                                <a href="{{ paginate.next.url }}" class="btn btn-paginate">
+                                    <img src="{{ 'icon-arrow-right-6.svg' | file_url }}" width="36" alt="{{ page_title }}">
+                                </a>
+                            {% endif %}
+                        </div> 
+                    {% endif %}
+                {% endpaginate %}
+            </div>      
+        </div>
+    {% else %}
+        <a class="link" href="/account/login" style="display: flex; justify-content: center;">Login page</a>
+        <script>
+            window.location = "/account/login";
+        </script>
+    {% endif %}    
+</div>

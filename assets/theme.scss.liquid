@@ -1,0 +1,177 @@
+// global
+.btn {
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    padding: 10px 0;
+    text-decoration: none;
+    &:focus, &:active {
+        outline: none;
+        border: none;
+    }
+    &.btn-primary {
+        width: 100%;
+        height: 100%;
+        text-transform: uppercase;
+        border: 1px solid #000;
+        transition: color .3s linear, background-color .3s linear;
+        &:hover {
+            transition: color .3s linear, background-color .3s linear;
+            background-color: #fff;
+            color: #000;
+        }
+    }
+    &.btn-inherit {
+        display: inline-block;
+        color: #000;
+        background: none;
+        padding: 0;
+        text-decoration: underline;
+        transition: opacity .3s linear;
+        &:hover {
+            transition: opacity .3s linear;
+            opacity: 0.6;
+        }
+    }
+    &.btn-paginate {
+        display: inherit;
+        background-color: inherit;
+        color: inherit;
+        padding: 10px;
+    }
+}
+
+// customer pages
+.customer_page {
+    padding: 200px 15px;
+    @media (max-width: 639px) {
+        padding: 150px 15px;
+    }
+    .grid-container {
+        max-width: 700px;
+        &.fluid {
+            max-width: 1000px;
+        }
+    }
+    form {
+        input, select {
+            cursor: pointer;
+            padding: 10px 5px;
+            border: none;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+            transition: border-bottom-color .3s linear;
+            &:active, &:focus {
+                outline: none;
+                border: none;
+            }
+            &:hover
+            { 
+                outline: none;
+                transition: border-bottom-color .3s linear;
+                border-bottom-color: #000;
+            }
+            &.full-size {
+                display: block;
+                width: 100%;
+            }
+        }
+        select {
+            background: #fff;
+            color: #000;
+        }
+    }
+    .title {
+        font-size: 36px;
+        text-transform: uppercase;
+        color: #000;
+        padding-bottom: 0;
+        margin-bottom: 1.25rem;
+        @media (max-width: 639px) {
+            font-size: 30px;
+        }
+        &.sub {
+            font-size: 24px;
+            @media (max-width: 639px) {
+                font-size: 20px;
+            }
+        }
+    }
+    .text {
+        display: block;
+        font-size: 14px;
+    }
+    .nav {
+        display: flex;
+        align-items: center;
+        a {
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
+        }
+    }
+    .link {
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: underline;
+        color: #000;
+        transition: all .3s linear;
+        &:hover {
+            transition: all .3s linear;
+            color: #ccc;
+            text-decoration: none;
+        }
+    }
+}
+
+// header
+.header {
+    padding: 20px 10px;
+    background: #24292e;
+    margin-bottom: 40px;
+    a {
+        transition: color .3s linear;;
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+            transition: color .3s linear;;
+            color: #ccc;
+        }
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
+}
+
+// product-item
+.product-item {
+    display: block;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: box-shadow .3s linear;
+    &:hover {
+        transition: box-shadow .3s linear;
+        box-shadow: 0 0 2px #000;
+    }
+    img {
+        width: 100%;
+    }
+    .title {
+        color: #000;
+        font-size: 16px;
+        margin: 3px 0;
+    }
+    span, b {
+        color: #000;
+    }
+}
+
+// collection
+body.collection {
+
+}

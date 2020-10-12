@@ -1,0 +1,15 @@
+<div>
+    <a class="product-item" href="{{ product.url }}">
+        {% assign url = product.featured_image.src | img_url: 'master' %}
+        <img src="{{ url }}" alt="{{ page_title }}">
+        <h4 class="title">{{ product.title }}</h4>
+        <div class="grid-x align-justify align-middle">
+            <span>{{ product.price | money }}</span>
+            {% if product.available %}
+                <b>available</b>
+            {% else %}
+                <b>sold out</b>
+            {% endif %}
+        </div>
+    </a>    
+</div>

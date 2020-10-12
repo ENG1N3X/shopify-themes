@@ -1,0 +1,46 @@
+<!-- collection-template -->
+<div class="grid-container">
+    {% paginate collection.products by section.settings.range %}
+        <div class="grid-x">
+            {% for product in collection.products %}
+                <div class="cell small-6 medium-4 large-3">
+                    {% render "product-item", product: product %}
+                </div>
+                {% else %}
+                    <p>No products</p>
+            {% endfor %}
+        </div>
+        {% if paginate.pages > 1 %}
+            <div class="grid-x cell align-center align-middle">
+                {% if paginate.previous.is_link %}
+                    <a href="{{ paginate.previous.url }}" class="btn btn-paginate">
+                        <img src="{{ 'icon-arrow-left-6.svg' | file_url }}" width="36" alt="{{ page_title }}">
+                    </a>
+                {% endif %}
+                {% if paginate.next.is_link %}
+                    <a href="{{ paginate.next.url }}" class="btn btn-paginate">
+                        <img src="{{ 'icon-arrow-right-6.svg' | file_url }}" width="36" alt="{{ page_title }}">
+                    </a>
+                {% endif %}
+            </div> 
+        {% endif %}     
+    {% endpaginate %}
+</div>
+<!-- collection-template // -->
+
+{% schema %}
+{
+    "name": "Collection",
+    "settings": [
+        {
+            "type": "range",
+            "id": "range",
+            "label": "Products per collection page",
+            "min": 1,
+            "max": 16,
+            "step": 1,
+            "default": 1
+        }
+    ]
+}
+{% endschema %}
