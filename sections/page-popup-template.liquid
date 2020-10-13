@@ -1,0 +1,66 @@
+<!-- page-popup-template -->
+<section class="page-popup">
+    <div class="grid-container">
+    {% if customer %}
+        <!-- Shipping -->
+        <div class="popup-block shipping open">
+            <h2>Shipping</h2>
+            <div class="grid-x align-center">
+                <div class="cell small-10 medium-8 grid-x">
+                    <label for="s_first_name">First Name</label>
+                    <input type="text" id="s_first_name" name="s_first_name" class="cell">
+                    <span class="error"></span>
+                </div>
+                <div class="cell small-10 medium-8 grid-x">
+                    <label for="s_last_name">Last Name</label>
+                    <input type="text" id="s_last_name" name="s_last_name" class="cell">
+                    <span class="error"></span>
+                </div>
+            </div>
+            <div class="grid-x">
+                <input type="checkbox" class="shipping-checkbox" checked data-open-popup='.popup-block.billing'>
+                <label for="shipping-checkbox">Same billing data</label>
+            </div>
+        </div>
+        <!-- Billing -->
+        <div class="popup-block billing" style="display: none;">
+            <h2>Billing</h2>
+            <div class="grid-x align-center">
+                <div class="cell small-10 medium-8 grid-x">
+                    <label for="b_first_name">First Name</label>
+                    <input type="text" id="b_first_name" name="b_first_name" class="cell">
+                    <span class="error"></span>
+                </div>
+                <div class="cell small-10 medium-8 grid-x">
+                    <label for="b_last_name">Last Name</label>
+                    <input type="text" id="b_last_name" name="b_last_name" class="cell">
+                    <span class="error"></span>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <!-- Open popup login -->
+        <button class="btn btn-popup" data-open-popup='.popup-block.login'>Login popup</button>
+        <!-- Current popup -->
+        <div class="popup-block login" style="display: none;">
+            {% form 'customer_login' %}
+                <input type="hidden" name="checkout_url" value="{{ page.url }}" />
+
+                {{ form.errors | default_errors }}
+
+                <h2 class="title">Login</h2>
+
+                <div class="grid-x">
+                    <label for="email">Your email</label>
+                    <input class="cell" type="email" placeholder="Email Address" value="" name="customer[email]" id="email" size="30" required/>
+                    <label for="login_password">Your password</label>
+                    <input class="cell" type="password" placeholder="Password" value="" name="customer[password]" id="login_password" size="30" required/>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Login</button>
+            {% endform %}
+        </div>
+    {% endif %}
+    </div>    
+</section>
+<!-- page-popup-template // -->

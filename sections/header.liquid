@@ -8,10 +8,9 @@
             </nav>
             <div class="grid-x align-middle">
                 {% if customer %}
-                    <a href="/account">Account</a>
-                    <a href="/account/logout">Logout</a>
+                    <a style="color: green;" href="/account">Account</a>
                 {% else %}
-                    <a href="/account">Login</a>
+                    <a style="color: red;" href="/account/login">Account</a>
                 {% endif %}
             </div>
         </div>

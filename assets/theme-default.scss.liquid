@@ -1,0 +1,183 @@
+// Contain:
+// customer pages
+// 404
+// popup
+// buttons: primary, inherit, paginate
+
+// global
+.btn {
+    display: block;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    padding: 10px 0;
+    text-decoration: none;
+    &:focus, &:active {
+        outline: none;
+        border: none;
+    }
+    &.btn-primary {
+        width: 100%;
+        height: 100%;
+        text-transform: uppercase;
+        border: 1px solid #000;
+        transition: color .3s linear, background-color .3s linear;
+        &:hover {
+            transition: color .3s linear, background-color .3s linear;
+            background-color: #fff;
+            color: #000;
+        }
+    }
+    &.btn-inherit {
+        display: inline-block;
+        color: #000;
+        background: none;
+        padding: 0;
+        text-decoration: underline;
+        transition: opacity .3s linear;
+        &:hover {
+            transition: opacity .3s linear;
+            opacity: 0.6;
+        }
+    }
+    &.btn-paginate {
+        display: inherit;
+        background-color: inherit;
+        color: inherit;
+        padding: 10px;
+    }
+    &.btn-popup {
+        text-transform: uppercase;
+        border: 1px solid #000;
+        border-radius: 4px;
+        padding: 15px 8px;
+        transition: color .3s linear, background-color .3s linear;
+        &:hover {
+            transition: color .3s linear, background-color .3s linear;
+            background-color: #fff;
+            color: #000;
+        }
+    }
+}
+
+// customer pages
+section.customer_page {
+    padding: 200px 15px;
+    @media (max-width: 639px) {
+        padding: 150px 15px;
+    }
+    .grid-container {
+        max-width: 700px;
+        &.fluid {
+            max-width: 1000px;
+        }
+    }
+    form {
+        input, select {
+            cursor: pointer;
+            padding: 10px 5px;
+            border: none;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+            transition: border-bottom-color .3s linear;
+            &:active, &:focus {
+                outline: none;
+                border: none;
+            }
+            &:hover
+            { 
+                outline: none;
+                transition: border-bottom-color .3s linear;
+                border-bottom-color: #000;
+            }
+            &.full-size {
+                display: block;
+                width: 100%;
+            }
+        }
+        select {
+            background: #fff;
+            color: #000;
+        }
+    }
+    .title {
+        font-size: 36px;
+        text-transform: uppercase;
+        color: #000;
+        padding-bottom: 0;
+        margin-bottom: 1.25rem;
+        @media (max-width: 639px) {
+            font-size: 30px;
+        }
+        &.sub {
+            font-size: 24px;
+            @media (max-width: 639px) {
+                font-size: 20px;
+            }
+        }
+    }
+    .text {
+        display: block;
+        font-size: 14px;
+    }
+    .nav {
+        display: flex;
+        align-items: center;
+        a {
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
+        }
+    }
+    .link {
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: underline;
+        color: #000;
+        transition: all .3s linear;
+        &:hover {
+            transition: all .3s linear;
+            color: #ccc;
+            text-decoration: none;
+        }
+    }
+}
+// 404
+section.error-page {
+    padding: 200px 15px;
+    @media (max-width: 639px) {
+        padding: 150px 15px;
+    }
+    text-align: center;
+    h1 {
+        font-size: 90px;
+        margin: 0;
+    }
+    p {
+        font-size: 40px;
+        margin: 10px 0;
+    }
+}
+// page-popup
+section.page-popup {
+    padding: 200px 15px;
+    @media (max-width: 639px) {
+        padding: 150px 15px;
+    }
+    .popup-block {
+        border: 1px solid #eee;
+        padding: 40px 20px;
+        input {
+            margin-bottom: 20px;
+            &[type="checkbox"] {
+                margin-bottom: 0;
+            }
+        }
+        button {
+            max-width: 300px;
+            margin-left: auto;
+        }
+    }
+}

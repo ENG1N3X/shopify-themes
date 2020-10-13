@@ -1,3 +1,17 @@
 $(function() {
-    console.log("document ready")
+    // Popup
+    $('[data-open-popup]').click(function() {
+        const $currentPopup = $($(this).data("open-popup"))
+        let isOpen = $currentPopup.hasClass("open")
+        if(isOpen) {
+            $currentPopup.fadeOut(function() {
+                $currentPopup.removeClass("open")
+            })
+        }
+        else {
+            $currentPopup.fadeIn(function() {
+                $currentPopup.addClass("open")
+            })
+        }
+    })
 })
