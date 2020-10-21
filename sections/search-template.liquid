@@ -1,0 +1,32 @@
+<!-- search-template -->
+<section class="search_page">
+    <div class="grid-container fluid">
+        <h3 class="title">Search</h3>
+
+        {% paginate search.results by 1 %}
+            <form action="/search" method="get" role="search">
+                <input type="search" name="q" value="{{ search.terms | escape }}">
+                <button type="submit">search</button>
+            </form>
+
+            {% if search.performed %}
+                {% for item in search.results %}
+                    <a href="{{ item.featured_image }}" class="searchItem">
+                        {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
+                        <h5>{{ item.title }}</h5>
+                        <p>{{ item.content | strip_html | truncatewords: 30 }}</p>
+                    </a>
+                {% else %}
+                    no results
+                {% endfor %}
+            {% endif %}
+
+            <div class="pagination">
+                {% if paginate.pages > 1 %}
+                    {{ paginate | default_pagination }}
+                {% endif %}
+            </div>
+        {% endpaginate %}
+    </div>
+</section>
+<!-- search-template // -->

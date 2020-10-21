@@ -1,5 +1,6 @@
 // Contain:
 // customer pages
+// search page
 // 404
 // popup
 // buttons: primary, inherit, paginate
@@ -62,7 +63,84 @@
     }
 }
 
+// search page
+// body.search-template
+section.search_page {
+    padding: 200px 15px;
+    @media (max-width: 639px) {
+        padding: 150px 15px;
+    }
+    .grid-container {
+        max-width: 700px;
+        &.fluid {
+            max-width: 1400px;
+        }
+    }
+    .title {
+        font-size: 36px;
+        text-transform: uppercase;
+        color: #000;
+        padding-bottom: 0;
+        margin-bottom: 1.25rem;
+        @media (max-width: 639px) {
+            font-size: 30px;
+        }
+        &.sub {
+            font-size: 24px;
+            @media (max-width: 639px) {
+                font-size: 20px;
+            }
+        }
+    }
+    form {
+        display: flex;
+        margin-bottom: 40px;
+        input {
+            border: 1px solid #000;
+            width: 100%;
+            padding: 0 10px;
+        }
+        button {
+            text-transform: uppercase;
+            color: #fff;
+            padding: 10px 15px;
+            background-color: #000;
+            border: 1px solid #000;
+            cursor: pointer;
+            transition: background-color .3s linear, color .3s linear;
+            &:hover {
+                transition: background-color .3s linear, color .3s linear;
+                background-color: #fff;
+                color: #000;
+            }
+        }
+    }
+    .searchItem {
+        display: block;
+    }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            &:not(:last-child){
+                margin-right: 5px;
+            }
+            &.page.current {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
 // customer pages
+// body.login-template,
+// body.register-template,
+// body.account-template,
+// body.addresses-template,
+// body.order-template,
+// body.reset_password-template,
+// body.activate_account-template
 section.customer_page {
     padding: 200px 15px;
     @media (max-width: 639px) {
