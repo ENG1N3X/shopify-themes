@@ -1,6 +1,7 @@
 // Contain:
 // customer pages
 // search page
+// cart
 // 404
 // popup
 // buttons: primary, inherit, paginate
@@ -256,6 +257,202 @@ section.page-popup {
         button {
             max-width: 300px;
             margin-left: auto;
+        }
+    }
+}
+
+// cart
+.ring-loader {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+  }
+.ring-loader div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+    border: 3px solid #000;
+    border-radius: 50%;
+    animation: ring-loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #000 transparent transparent transparent;
+}
+.ring-loader div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+.ring-loader div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+.ring-loader div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+@keyframes ring-loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.cart {
+    padding: 200px 45px;
+    @media (max-width: 639px) {
+        padding: 150px 15px;
+    }
+    .cart-table {
+        width: 100%;
+        border: 1px solid #000;
+        border-spacing: 0;
+        margin-bottom: 15px;
+        thead {
+            background: #fafafa;
+        }
+        tbody {
+            tr:nth-child(even) {
+                background: #fafafa;
+            }
+        }
+        .heading {
+            text-align: left;
+            font-weight: normal;
+            padding: 15px 10px;
+            @media (max-width: 639px) {
+                padding: 5px;
+            }
+        }
+        .content {
+            padding: 15px 10px;
+            @media (max-width: 639px) {
+                padding: 5px;
+            }
+            &:first-child {
+                padding-left: 10px;
+            }
+            &:last-child {
+                padding-right: 10px;
+            }
+            &.quantity {
+               input {
+                padding: 3px;
+                max-width: 30px;
+                border: 1px solid #000;
+               }
+            }
+        }
+    }
+    .textarea {
+        width: 100%;
+        min-height: 80px;
+        border: 1px solid #000;
+        padding: 10px;
+    }
+    .text {
+        font-size: 14px;
+        margin-bottom: 2px;
+        padding-bottom: 0;
+    }
+    img {
+        display: inline-block;
+        max-width: 100%;
+        height: auto;
+        &.cart-img {
+            max-width: 150px;
+            margin-bottom: 0;
+            @media (max-width: 639px) {
+                max-width: 80px;
+            }
+        }
+    }
+}
+
+.cart-ajax {
+    border: 1px solid #000;
+    padding: 15px;
+    min-width: 350px;
+    min-height: 200px;
+    background: #fff;
+    position: fixed;
+    top: 100px;
+    right: 360px;
+    z-index: 999;
+    @media (max-width: 639px) {
+        padding: 10px;
+        min-width: 320px;
+        width: 100%;
+        right: 0;
+    }
+}
+
+.cart-ajax__wrapper {
+    max-height: 600px;
+    overflow-y: auto;
+    @media (max-width: 639px) {
+        max-height: 400px;
+    }
+    .cart-ajax__product {
+        align-items: center;
+        justify-content: space-between;
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+        span {
+            font-size: 13px;
+            &:first-child {
+                padding-left: 5px;
+            }
+        }
+    }
+
+    .cart-ajax__total {
+        align-items: center;
+        justify-content: space-between;
+        margin: 40px 0;
+    }
+
+    img {
+        display: inline-block;
+        max-width: 200px;
+        width: 100%;
+        height: auto;
+        &.cart-img {
+            margin-bottom: 0;
+            @media (max-width: 639px) {
+                min-width: 100px;
+            }
+        }
+    }
+}
+
+.cart, .cart-ajax, .cart-ajax__wrapper {
+    .btn-cart {
+        display: block;
+        text-align: center;
+        text-transform: uppercase;
+        color: #fff !important;
+        background: #000;
+        padding: 10px 15px !important;
+        font-size: 14px;
+        transition: opacity .3s linear;
+        cursor: pointer;
+        width: auto !important;
+        &.large {
+            width: 100% !important;
+            padding: 10px 0 !important;
+        }
+        &.small {
+            max-width: 200px;
+            padding: 10px 0 !important;
+        }
+        &:hover {
+            transition: opacity .3s linear;
+            opacity: 0.8;
         }
     }
 }

@@ -6,12 +6,14 @@
                     <a href="{{ link.url }}">{{ link.title }}</a>
                 {% endfor %}
             </nav>
-            <div class="grid-x align-middle">
+            <div class="grid-x align-middle" style="position: relative;">
                 {% if customer %}
                     <a style="color: green;" href="/account">Account</a>
                 {% else %}
                     <a style="color: red;" href="/account/login">Account</a>
                 {% endif %}
+                <a href="/cart" class="cart-button" style="color: yellow;">Cart</a>
+                {% render "cart-ajax" %}
             </div>
         </div>
     </div>
