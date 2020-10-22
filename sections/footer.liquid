@@ -1,3 +1,111 @@
 <!-- footer -->
-
+<div class="footer">
+    <div class="grid-container">
+        <div class="grid-x small-text-center">
+            <div class="cell medium-auto large-2">
+                <nav>
+                    {% for link in linklists[section.settings.footer_nav].links %}
+                        <a {% if link.current %}class="active"{% endif %} href="{{ link.url }}">{{ link.title }}</a>
+                    {% endfor %}
+                </nav>
+            </div>
+            <div class="cell medium-auto large-4">
+                {% for block in section.blocks %}
+                    {% if block.type == "working-hours" %}
+                        <div class="work" {{ block.shopify_attributes }}>
+                            {{ block.settings.richtext }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="cell medium-auto">
+                <div class="connect">
+                    <span>
+                        {{ section.settings.phone_text }}
+                        <a href="tel:{{ section.settings.phone_number }}">{{ section.settings.phone_number }}</a>
+                    </span>
+                    <span>
+                        {{ section.settings.mail_text }}
+                        <a href="mailto:{{ section.settings.mail_email }}">{{ section.settings.mail_email }}</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- footer // -->
+{% schema %}
+{
+    "name": {
+        "en": "Footer",
+        "ru": "Подвал"
+    },
+    "settings": [
+        {
+            "type": "link_list",
+            "id": "footer_nav",
+            "label": {
+                "en": "Footer navigation",
+                "ru": "Навигация в подвале"
+            },
+            "default": "main-menu"
+        },
+        {
+            "type": "text",
+            "id": "phone_text",
+            "label": {
+                "en": "Text for phone",
+                "ru": "Текст для телефона"
+            },
+            "default": "Телефон:"
+        },
+        {
+            "type": "text",
+            "id": "phone_number",
+            "label": {
+                "en": "Phone number",
+                "ru": "Номер телефона"
+            },
+            "default": "+792100000000"
+        },
+        {
+            "type": "text",
+            "id": "mail_text",
+            "label": {
+                "en": "Text for email",
+                "ru": "Текст для почты"
+            },
+            "default": "Почта:"
+        },
+        {
+            "type": "text",
+            "id": "mail_email",
+            "label": {
+                "en": "Email",
+                "ru": "Почта"
+            },
+            "default": "test@test.test"
+        }
+    ],
+    "blocks": [
+        {
+            "name": {
+                "en": "Working hours",
+                "ru": "Время работы"
+            },
+            "type": "working-hours",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "richtext",
+                    "label": {
+                        "en": "Working hours",
+                        "ru": "Время работы"
+                    },
+                    "default": "<p>Понедельник: 10:00 - 22:00</p>"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

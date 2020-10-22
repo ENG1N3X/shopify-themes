@@ -1,0 +1,57 @@
+<!-- index-blog -->
+<section class="blog">
+    <div class="grid-container">
+
+        {% assign _blog = blogs[section.settings.blog] %}
+
+        <h2 class="main-title">{{ _blog.title }}</h2>
+
+        <div class="grid-x">
+            {% assign _articles = _blog.articles %}
+            {% for _article in _articles limit: section.settings.range %}
+                {% assign classes = "cell" %}
+                {% if forloop.index == 2 or forloop.index == 4 or forloop.index == 6 or forloop.index == 8 or forloop.index == 10 or forloop.index == 12%}
+                    {% assign classes = "cell flex-dir-row-reverse" %}
+                {% endif %}
+                {% render "article-item", article: _article, classes: classes %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- index-blog // -->
+{% schema %}
+{
+    "name": {
+        "en": "Blog",
+        "ru": "Блог"
+    },
+    "settings": [
+        {
+            "type": "blog",
+            "id": "blog",
+            "label": {
+                "en": "Blog",
+                "ru": "Блог"
+            }
+        },
+        {
+            "type": "range",
+            "id": "range",
+            "label": {
+                "en": "Articles per page",
+                "ru": "Записей на странице"
+            },
+            "min": 1,
+            "max": 12,
+            "step": 1,
+            "default": 3
+        }
+    ],
+    "presets": [
+        {
+            "category": "index-blog",
+            "name": "index-blog"
+        }
+    ]
+}
+{% endschema %}

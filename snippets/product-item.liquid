@@ -1,15 +1,25 @@
-<div>
-    <a class="product-item" href="{{ product.url }}">
-        {% assign url = product.featured_image.src | img_url: 'master' %}
-        <img src="{{ url }}" alt="{{ page_title }}">
-        <h4 class="title">{{ product.title }}</h4>
-        <div class="grid-x align-justify align-middle">
-            <span>{{ product.price | money }}</span>
-            {% if product.available %}
-                <b>available</b>
-            {% else %}
-                <b>sold out</b>
+<!-- product-item -->
+<div class="{{ classes }} product-item">
+    <a href="{{ product.url }}">
+
+        {% for tag in product.tags %}
+            {% assign _tag = tag | downcase %}
+            {% if _tag contains "new" %}
+                <span class="tag">НОВОЕ</span>
+                {% break %}
             {% endif %}
+        {% endfor %}
+
+        <div class="top">
+            {% assign productImage = product.featured_media | img_url: 'master' %}
+            <img src="{{ productImage }}" alt="{{ product.title }}">
         </div>
-    </a>    
+        <div class="bottom" style="display: none;">
+            <h4 class="title">{{ product.title }}</h4>
+            <span class="price">{{ product.price | money }}</span>
+            {{ product.description }}
+        </div>
+    </a>
+    <button type="button" class="btn btn-product">больше</button>
 </div>
+<!-- product-item // -->

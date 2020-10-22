@@ -1,32 +1,50 @@
+<!-- header -->
 <div class="header">
     <div class="grid-container">
-        <div class="grid-x align-justify align-middle">
-            <nav class="grid-x align-middle">
-                {% for link in linklists[section.settings.header_nav].links %}
-                    <a href="{{ link.url }}">{{ link.title }}</a>
-                {% endfor %}
-            </nav>
-            <div class="grid-x align-middle" style="position: relative;">
-                <a href="/search" style="color: purple;">Search</a>
-                {% if customer %}
-                    <a style="color: green;" href="/account">Account</a>
-                {% else %}
-                    <a style="color: red;" href="/account/login">Account</a>
-                {% endif %}
-                <a href="/cart" class="cart-button" style="color: yellow;">Cart</a>
-                {% render "cart-ajax" %}
+        <div class="grid-x align-justify align-middle" style="position: relative;">
+            <div class="cell medium-auto grid-x small-align-center align-middle">
+                <a href="/" class="logo">
+                    {% assign logoImage = section.settings.logo | img_url: 'master' %}
+                    <img src="{{ logoImage }}" alt="{{ page_title }}">
+                </a>
+                <nav class="grid-x align-middle">
+                    {% for link in linklists[section.settings.header_nav].links %}
+                        <a {% if link.current %}class="active"{% endif %} href="{{ link.url }}">{{ link.title }}</a>
+                    {% endfor %}
+                </nav>
             </div>
+            <div class="cell medium-auto grid-x small-align-center align-right align-middle">
+                <a href="/search">Поиск</a>
+                <a href="{% if customer %}/account{% else %}/account/login{% endif %}">Аккаунт</a>
+                <a href="/cart" class="cart-button">Корзина({{ cart.item_count }})</a>
+            </div>
+            {% render "cart-ajax" %}
         </div>
     </div>
 </div>
+<!-- header // -->
 {% schema %}
 {
-    "name": "Header",
+    "name": {
+        "en": "Header",
+        "ru": "Шапка"
+    },
     "settings": [
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": {
+                "en": "Logo",
+                "ru": "Логотип"
+            }
+        },
         {
             "type": "link_list",
             "id": "header_nav",
-            "label": "Header navigation",
+            "label": {
+                "en": "Header navigation",
+                "ru": "Навигация в шапке"
+            },
             "default": "main-menu"
         }
     ]

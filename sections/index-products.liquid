@@ -1,0 +1,52 @@
+<!-- index-products -->
+<section class="products">
+    <div class="grid-container">
+        {% assign _collection = collections[section.settings.collection] %}
+
+        <h2 class="main-title">{{ _collection.title }}</h2>
+
+        <div class="grid-x">
+            {% assign _products = _collection.products %}
+            {% for _product in _products limit: section.settings.range %}
+                {% render "product-item", product: _product, classes: "cell medium-6 large-4" %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- index-products // -->
+{% schema %}
+{
+    "name": {
+        "en": "Products",
+        "ru": "Товары"
+    },
+    "settings": [
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": {
+                "en": "Collection",
+                "ru": "Коллекция"
+            }
+        },
+        {
+            "type": "range",
+            "id": "range",
+            "label": {
+                "en": "Products per page",
+                "ru": "Продуктов на странице"
+            },
+            "min": 1,
+            "max": 12,
+            "step": 1,
+            "default": 6
+        }
+    ],
+    "presets": [
+        {
+            "category": "index-products",
+            "name": "index-products"
+        }
+    ]
+}
+{% endschema %}

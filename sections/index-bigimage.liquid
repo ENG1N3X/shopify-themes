@@ -1,0 +1,30 @@
+<!-- index-bigimage -->
+<section class="bigimage">
+    {% assign imageUrl = section.settings.image | img_url: 'master' %}
+    <img src="{{ imageUrl }}" alt="{{ page_title }}">
+</section>
+<!-- index-bigimage // -->
+{% schema %}
+{
+    "name": {
+        "en": "Big image",
+        "ru": "Большая картинка"
+    },
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": {
+                "en": "Image",
+                "ru": "Картинка"
+            }
+        }
+    ],
+    "presets": [
+        {
+            "category": "index-bigimage",
+            "name": "index-bigimage"
+        }
+    ]
+}
+{% endschema %}

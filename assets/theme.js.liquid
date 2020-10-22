@@ -1,19 +1,37 @@
 $(function() {
-    // Popup
-    $('[data-open-popup]').click(function() {
-        const $currentPopup = $($(this).data("open-popup"))
-        let isOpen = $currentPopup.hasClass("open")
+    // header size
+    $(document).scroll(function() {
+        if ($(window).width() > 639) {
+            if ($(document).scrollTop() == 0) {
+                $(".header").removeClass("header-padding")
+            } else if ($(document).scrollTop() > 24) {
+                $(".header").addClass("header-padding")
+            }
+        }
+    });
+
+    // product-item
+    $(".btn-product").click(function() {
+        const $currentProduct = $($(this).siblings("a").find(".bottom"));
+        let isOpen = $currentProduct.hasClass("active-hover")
         if(isOpen) {
-            $currentPopup.fadeOut(function() {
-                $currentPopup.removeClass("open")
+            $currentProduct.fadeOut(function() {
+                $currentProduct.removeClass("active-hover")
             })
         }
         else {
-            $currentPopup.fadeIn(function() {
-                $currentPopup.addClass("open")
+            $currentProduct.fadeIn(function() {
+                $currentProduct.addClass("active-hover")
             })
         }
     })
+
+    // product-template
+    $('.product-slick').slick({
+        dots: true,
+        arrows: false,
+        adaptiveHeight: true
+    });
 
     // Cart
     $('.product-ajax-form').submit(function(e){
