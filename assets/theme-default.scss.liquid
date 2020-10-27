@@ -93,6 +93,36 @@
     }
 }
 
+// Smart Wishlist
+.header-wishlist {
+    display: block;
+    background: url('{{ "icon-favorites.svg" | file_url }}');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    .topbadge {
+        color: #fff !important;
+        background-color: transparent !important;
+        padding: 0 !important;
+        // display: block !important;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+.product-item-wishlist {
+    margin: 0 !important;
+}
+
+.wishlistpage {
+    padding: 200px 15px 40px 15px;
+}
+
 // search page
 // body.search-template
 section.search_page {

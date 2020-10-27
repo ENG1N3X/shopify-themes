@@ -17,6 +17,9 @@
                 <a href="/search">Поиск</a>
                 <a href="{% if customer %}/account{% else %}/account/login{% endif %}">Аккаунт</a>
                 <a href="/cart" class="cart-button">Корзина({{ cart.item_count }})</a>
+                <!-- Smart Wishlist -->
+                <a href="/a/wishlist" class="header-wishlist"></a>
+                <!-- Smart Wishlist //-->
             </div>
             {% render "cart-ajax" %}
         </div>

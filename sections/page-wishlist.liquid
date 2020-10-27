@@ -1,0 +1,16 @@
+<section class="wishlist">
+    <div class="grid-container">
+        <h2 class="main-title">{{ page.title }}</h2>
+        <div id='ZoomyWishlistPage'></div>
+        <script src='https://zooomyapps.com/wishlist/ListWishlist.js' 
+            data-shop-id='{{shop.permanent_domain}}' 
+            data-customer-id='{{customer.id}}'>
+        </script>
+    </div>
+</section>
+
+{% stylesheet 'scss' %}
+    .wishlist {
+        padding: 200px 15px 40px 15px;
+    }
+{% endstylesheet %}

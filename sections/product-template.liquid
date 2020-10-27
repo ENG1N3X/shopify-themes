@@ -35,7 +35,19 @@
                         <input class="quantity" type="number" name="quantity" value="1" min="1">
                       </div>
 
-                      <button type="submit" name="add" class="btn btn-primary">Add to cart</button>
+                      <div class="cell grid-x">
+                        <div class="cell">
+                          <!-- smart wishlist -->
+                          <div id="smartwishlist" 
+                            data-product="{{ product.id }}" 
+                            data-variant="{{ product.variants.first.id }}">
+                          </div>
+                          <!-- smart wishlist //-->
+                        </div>
+                        <div class="cell">
+                          <button type="submit" name="add" class="btn btn-primary">Add to cart</button>
+                        </div>
+                      </div>
                     </form>
 
                     <div class="description">{{ product.description }}</div>

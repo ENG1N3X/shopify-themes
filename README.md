@@ -2,6 +2,6 @@
 
 #### Run themekit
 ```bash
-theme watch --env=production --allow-live & theme open --env=production
-theme watch --env=dev-art & theme open --env=dev-art
+theme watch --env=master --allow-live & theme open --env=master
+theme watch --env=dev-art --allow-live & theme open --env=dev-art
 ```
