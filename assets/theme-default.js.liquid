@@ -1,0 +1,20 @@
+$(function() {
+    // Example:
+    // <button data-current-step='.current-step' data-prev-step='.prev-step' data-next-step='.next-step'></button>
+    
+    $("[data-current-step]").click(function(e) {
+        e.preventDefault()
+    
+        const $currentStep = $(this).data("current-step")
+        const $prevStep = $(this).data("prev-step")
+        const $nextStep = $(this).data("next-step")
+    
+        $($currentStep).fadeOut();
+        if($prevStep) {
+            $($prevStep).fadeIn()
+        }
+        if($nextStep) {
+            $($nextStep).fadeIn()
+        }        
+    })
+})
