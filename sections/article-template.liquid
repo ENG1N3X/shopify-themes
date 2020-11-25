@@ -1,0 +1,20 @@
+<!-- article-template -->
+<section class="article">
+    {% if article.image %}
+        {% assign articleImage = article | img_url: 'large' %}
+        <img src="{{ articleImage }}" alt="{{ article.title }}">
+    {% endif %}
+    <div class="grid-container">
+        <div class="grid-x">
+            <h2 class="cell main-title">
+                {{ article.title }}
+            </h2>
+            <div class="cell">
+                <div class="content">
+                    {{ article.content }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- article-template // -->

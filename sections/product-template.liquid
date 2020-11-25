@@ -3,15 +3,23 @@
     <div class="grid-container">
         <div class="grid-x">
             <div class="cell large-6">
-                <div class="product-slick">
+                <div class="product-slider owl-carousel owl-theme" id="product-template-slider">
                     {% for image in product.images %}
-                        <img src="{{ image.src | img_url: 'master' }}" alt="{{ product.title }}">
+                      <img src="{{ image.src | img_url: 'master' }}" alt="{{ product.title }}">
                     {% endfor %}
                 </div>
             </div>
             <div class="cell large-6">
                 <div class="content">
-                    <h2 class="main-title">{{ product.title }}</h2>
+                    <div class="cell grid-x align-justify align-middle margin-bottom-2 margin-top-2">
+                      <h2 class="main-title margin-0">{{ product.title }}</h2>
+                      <!-- smart wishlist -->
+                        <div id="smartwishlist" class="product-template-wishlist" 
+                          data-product="{{ product.id }}" 
+                          data-variant="{{ product.variants.first.id }}">
+                      </div>
+                      <!-- smart wishlist //-->
+                    </div>
 
                     {% assign current_variant = product.selected_or_first_available_variant %}
                     <form class="grid-x" action="/cart/add" method="post" enctype="multipart/form-data">
@@ -36,14 +44,6 @@
                       </div>
 
                       <div class="cell grid-x">
-                        <div class="cell">
-                          <!-- smart wishlist -->
-                          <div id="smartwishlist" 
-                            data-product="{{ product.id }}" 
-                            data-variant="{{ product.variants.first.id }}">
-                          </div>
-                          <!-- smart wishlist //-->
-                        </div>
                         <div class="cell">
                           <button type="submit" name="add" class="btn btn-primary">Add to cart</button>
                         </div>

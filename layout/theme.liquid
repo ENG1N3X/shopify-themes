@@ -14,7 +14,7 @@
   {% render "script-tags" %}
 
 </head>
-<body class="{{ template }}-template {% if template.suffix %}{{ template.suffix }}{% endif %}">
+<body class="{% if template.name == "404" %}error-template{% else %}{{ template.name }}-template{% endif %}{% if template.suffix %} {{ template.suffix }}{% endif %}">
 
   <header>
     {% section 'header' %}

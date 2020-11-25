@@ -5,7 +5,7 @@
 
         <h2 class="main-title">{{ _collection.title }}</h2>
 
-        <div class="grid-x">
+        <div class="grid-x grid-margin-x grid-margin-y">
             {% assign _products = _collection.products %}
             {% for _product in _products limit: section.settings.range %}
                 {% render "product-item", product: _product, classes: "cell medium-6 large-4" %}
@@ -44,7 +44,7 @@
     ],
     "presets": [
         {
-            "category": "index-products",
+            "category": "Homepage Products",
             "name": "index-products"
         }
     ]

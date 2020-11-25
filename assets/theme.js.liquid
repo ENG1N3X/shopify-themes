@@ -11,8 +11,8 @@ $(function() {
     });
 
     // product-item
-    $(".btn-product").click(function() {
-        const $currentProduct = $($(this).siblings("a").find(".bottom"));
+    $("[data-product-item]").click(function() {
+        const $currentProduct = $($(this).parent(".button-group").siblings("a").find(".bottom"));
         let isOpen = $currentProduct.hasClass("active-hover")
         if(isOpen) {
             $currentProduct.fadeOut(function() {
@@ -26,11 +26,14 @@ $(function() {
         }
     })
 
-    // product-template
-    $('.product-slick').slick({
+    // Owl.carousel Sliders
+
+    //-- product-template
+    $('#product-template-slider').owlCarousel({
+        nav: false,
         dots: true,
-        arrows: false,
-        adaptiveHeight: true
+        loop: true,
+        items: 1
     });
 
     // Cart

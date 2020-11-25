@@ -9,17 +9,15 @@
                 <button type="submit">search</button>
             </form>
 
-            {% if search.performed %}
-                {% for item in search.results %}
-                    <a href="{{ item.url }}" class="searchItem">
-                        {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
-                        <h5>{{ item.title }}</h5>
-                        <p>{{ item.content | strip_html | truncatewords: 30 }}</p>
-                    </a>
-                {% else %}
-                    no results
-                {% endfor %}
-            {% endif %}
+            <div class="grid-x">
+                {% if search.performed %}
+                    {% for item in search.results %}
+                        {% render "product-item", product: item, classes: "cell medium-4 large-3" %}
+                    {% else %}
+                        <p class="default-text">No results</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
 
             <div class="pagination">
                 {% if paginate.pages > 1 %}
