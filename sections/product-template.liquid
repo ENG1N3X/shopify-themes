@@ -1,0 +1,59 @@
+<!-- product-template -->
+<section class="product">
+    <div class="grid-container">
+        <div class="grid-x">
+            <div class="cell large-6">
+                <div class="product-slick">
+                    {% for image in product.images %}
+                        <img src="{{ image.src | img_url: 'master' }}" alt="{{ product.title }}">
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="cell large-6">
+                <div class="content">
+                    <h2 class="main-title">{{ product.title }}</h2>
+
+                    {% assign current_variant = product.selected_or_first_available_variant %}
+                    <form class="grid-x" action="/cart/add" method="post" enctype="multipart/form-data">
+                      
+                      <select name="id" class="cell">
+                        {% for variant in product.variants %}
+                          {% if variant.available %}
+                            <option value="{{ variant.id }}">
+                              {{ variant.title }} - {{ variant.price | money_with_currency }}
+                            </option>
+                          {% else %}
+                            <option disabled="disabled">
+                              {{ variant.title }} - sold out
+                            </option>
+                          {% endif %}
+                        {% endfor %}
+                      </select>
+
+                      <div class="cell grid-x align-middle align-right">
+                        <span class="price">{{ current_variant.price | money }}</span>
+                        <input class="quantity" type="number" name="quantity" value="1" min="1">
+                      </div>
+
+                      <div class="cell grid-x">
+                        <div class="cell">
+                          <!-- smart wishlist -->
+                          <div id="smartwishlist" 
+                            data-product="{{ product.id }}" 
+                            data-variant="{{ product.variants.first.id }}">
+                          </div>
+                          <!-- smart wishlist //-->
+                        </div>
+                        <div class="cell">
+                          <button type="submit" name="add" class="btn btn-primary">Add to cart</button>
+                        </div>
+                      </div>
+                    </form>
+
+                    <div class="description">{{ product.description }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- product-template // -->
