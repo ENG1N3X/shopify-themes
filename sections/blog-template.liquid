@@ -1,19 +1,12 @@
 <section class="blog">
     <div class="grid-container">
-        <div class="grid-x" style="position: relative;">
-            {%- comment -%}
-                {% if collection.image %}
-                    <img class="hero-image" src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
-                {% else %}
-                    <img class="hero-image" src="https://via.placeholder.com/1920x1080" alt="{{ collection.title }}">
-                {% endif %}
-            {%- endcomment -%}
+        <div class="grid-x">
             <h2 class="main-title">{{ blog.title }}</h2>
         </div>
         <div class="grid-x grid-margin-x grid-margin-y">
             {% paginate blog.articles by section.settings.range %}
                 {% for article in blog.articles %}
-                    {% render "article-item", article: article, classes: "cell medium-4 large-3" %}
+                    {% render "article-item-small", article: article, classes: "cell medium-4 large-3 small" %}
                 {% endfor %}
                 {% if paginate.pages > 1 %}
                     <div class="cell pagination">
@@ -27,7 +20,7 @@
 
 {% schema %}
 {
-    "name": "Blog Template",
+    "name": "Blog",
     "settings": [
         {
             "type": "range",

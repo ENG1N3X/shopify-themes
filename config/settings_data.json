@@ -61,6 +61,31 @@
         "settings": {
           "image": "shopify:\/\/shop_images\/1920x1080.png"
         }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "settings": {
+          "range": 4
+        }
+      },
+      "404-template": {
+        "type": "404-template",
+        "settings": {
+          "title": "404",
+          "desc": "Oooops. We did not find this page!",
+          "btn": "Back to home page"
+        }
+      },
+      "article-template": {
+        "type": "article-template",
+        "settings": {}
+      },
+      "list-collection-template": {
+        "type": "list-collection-template",
+        "settings": {
+          "title": "Коллекции",
+          "range": 6
+        }
       }
     },
     "content_for_index": [

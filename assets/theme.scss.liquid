@@ -109,6 +109,23 @@ body {
 .article-item {
     margin: 40px 0;
     position: relative;
+    // article-item-small
+    &.small {
+        .date {
+            right: auto;
+            font-size: 14px;
+            text-align: center;
+            width: 100%;
+        }
+        .content {
+            padding: 0;
+            .title {
+                font-size: 16px;
+                text-align: center;
+                margin: 10px 0;
+            }
+        }
+    }
     .date {
         position: absolute;
         right: 20px;
@@ -426,5 +443,13 @@ body.article-template {
 
 // blog-template
 body.blog-template {
-    
+    section.blog {
+        padding: 200px 15px 40px 15px;
+        @media (max-width: 639px) {
+            padding: 200px 15px 40px 15px;
+        }
+        .main-title {
+
+        } 
+    }
 }

@@ -1,0 +1,14 @@
+<article class="{{ classes }} article-item grid-x align-middle">
+    <div class="cell" style="position: relative;">
+        <img src="{{ article.image.src | img_url: 'master' }}" alt="{{ article.image.alt }}">
+        <span class="date">
+            {{ article.published_at | time_tag: format: 'date_at_time' }}
+        </span>
+    </div>
+    <div class="cell">
+        <div class="content">
+            <h4 class="title">{{ article.title }}</h4>
+            <a href="{{ article.url }}" class="btn btn-article btn-full">Больше</a>
+        </div>
+    </div>
+</article>

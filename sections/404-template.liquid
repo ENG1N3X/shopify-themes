@@ -1,0 +1,32 @@
+<!-- 404 -->
+<section class="error-page">
+    <h1>{{ section.settings.title }}</h1>
+    <p>{{ section.settings.desc }}</p>
+    <a href="/" class="btn btn-inherit">{{ section.settings.btn }}</a>
+</section>
+<!-- 404 // -->
+{% schema %}
+{
+    "name": "404",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "404"
+        },
+        {
+            "type": "text",
+            "id": "desc",
+            "label": "Description",
+            "default": "Oooops. We did not find this page!"
+        },
+        {
+            "type": "text",
+            "id": "btn",
+            "label": "Button text",
+            "default": "Back to home page"
+        }
+    ]
+}
+{% endschema %}
