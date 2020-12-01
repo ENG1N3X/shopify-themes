@@ -7,7 +7,7 @@ body {
 }
 
 // global
-h2.main-title {
+.main-title {
     color: #fff;
     font-size: 40px;
 }
@@ -16,6 +16,7 @@ h2.main-title {
     margin: 0;
 }
 
+// pagination
 .pagination {
     display: flex;
     justify-content: center;
@@ -150,7 +151,11 @@ h2.main-title {
 
         text-transform: uppercase;
         color: #fff;
-        font-size: 30px;
+        font-size: 22px;
+
+        width: 100%;
+        text-align: center;
+        padding: 0 15px;
     }
 }
 
@@ -324,6 +329,9 @@ body.collection-template {
             margin: 0;
             font-size: 60px;
             text-transform: uppercase;
+            width: 100%;
+            text-align: center;
+            padding: 0 15px;
             @media (max-width: 639px) {
                 font-size: 22px;
             }
@@ -414,4 +422,9 @@ body.article-template {
             }
         }
     }
+}
+
+// blog-template
+body.blog-template {
+    
 }
