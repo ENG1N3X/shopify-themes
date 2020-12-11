@@ -4,12 +4,19 @@ body {
     font-weight: 400;
     background: #24292e;
     line-height: normal;
+    font-size: rem(14);
+}
+
+// px to rem
+$browser-context: 16;
+@function rem($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}rem;
 }
 
 // global
 .main-title {
     color: #fff;
-    font-size: 40px;
+    font-size: rem(40);
 }
 .default-text {
     color: #fff;

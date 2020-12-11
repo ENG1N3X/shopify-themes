@@ -6,6 +6,12 @@
 // popup
 // buttons: primary, inherit, paginate
 
+// px to rem
+$browser-context: 16;
+@function rem($pixels, $context: $browser-context) {
+  @return #{$pixels/$context}rem;
+}
+
 // global
 input, button, form, select, textarea {
     &:focus, &:active {
