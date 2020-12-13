@@ -1,7 +1,6 @@
 $(function() {
     // Example:
     // <button data-current-step='.current-step' data-prev-step='.prev-step' data-next-step='.next-step'></button>
-    
     $("[data-current-step]").click(function(e) {
         e.preventDefault()
     
@@ -17,4 +16,157 @@ $(function() {
             $($nextStep).fadeIn()
         }        
     })
+
+    // Cart
+    $('.cart-button').mouseenter(function(){
+        openCart()
+    })
+    $('.cart-ajax').mouseleave(function(){
+        closeCart()
+    })
+    $('.add-to-cart').submit(function(e){
+        e.preventDefault()
+        const formData = {
+            'items': [{
+                'id': $(this).children("select[name='id']").val(),
+                'quantity': $(this).children("input[name='quantity']").val()
+            }]
+        };
+        addToCart(formData)
+    })
+    $(".delete-from-cart").click(function(e) {
+        e.preventDefault()
+        updateCart($(this))
+    })
+    $(".update-cart").change(function(e) {
+        e.preventDefault()
+        updateCart($(this))
+    })
+
+    async function addToCart(formData) {
+        await fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            console.log("Successed!")
+            openCart()
+            nativeToast({
+                message: 'Added!',
+                timeout: 5000,
+                rounded: true,
+                position: 'south',
+                closeOnClick: true,
+                type: 'success'
+            })
+            return response.json();
+        })
+        .catch((e) => {
+            console.log("Add to cart failed", e)
+            const error = JSON.parse(e.responseText)
+            if (error.status == 422){
+                nativeToast({
+                    message: 'Out Of Stock!',
+                    timeout: 5000,
+                    rounded: true,
+                    position: 'south',
+                    closeOnClick: true,
+                    type: 'error'
+                })
+            }
+        });
+    }
+    async function updateCart($item) {
+        await fetch('/cart/change.js', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ quantity: $item.val(), id: $item.data("item-key") })
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            if($item.val() > 0) {
+                // TODO: Cart frontend
+                const item_quantity = data.items.filter(i=>i.key == $item.data("item-key"))[0].quantity
+                if ($item.val() != item_quantity) {
+                    nativeToast({
+                        message: 'Out Of Stock!',
+                        timeout: 5000,
+                        rounded: true,
+                        position: 'south',
+                        closeOnClick: true,
+                        type: 'error'
+                    })
+                    $(`[data-item-key="${key}"]`).val(item_quantity)
+                } else {
+                    nativeToast({
+                      message: 'Quantity changed!',
+                      timeout: 5000,
+                      rounded: true,
+                      position: 'south',
+                      closeOnClick: true,
+                      type: 'success'
+                    })
+                    openCart()
+                }
+            } else {
+                nativeToast({
+                  message: 'Deleted!',
+                  timeout: 5000,
+                  rounded: true,
+                  position: 'south',
+                  closeOnClick: true,
+                  type: 'success'
+                })
+                openCart()
+            }
+        })
+        .catch((e) => {
+            console.log("Update cart error", e)
+            const error = JSON.parse(e.responseText)
+            if (error.status == 422){
+                nativeToast({
+                    message: 'Out Of Stock!',
+                    timeout: 5000,
+                    rounded: true,
+                    position: 'south',
+                    closeOnClick: true,
+                    type: 'error'
+                })
+            } else {
+                nativeToast({
+                    message: 'Update cart error!',
+                    timeout: 5000,
+                    rounded: true,
+                    position: 'south',
+                    closeOnClick: true,
+                    type: 'error'
+                })
+            }
+        });
+    }
+    async function openCart() {
+        $('.cart-ajax').addClass('active').fadeIn(100)
+        $('.cart-ajax .content-loader').html(`<div class="ring-loader"><div></div><div></div><div></div><div></div></div>`)
+        $('.cart-ajax .content-loader').load('/cart?view=ajax', function(){
+            let cartJson = JSON.parse($('.content-loader').find('#cartJSON').text())
+            $('.cart-item-count').text(cartJson.item_count)
+
+            $(".delete-from-cart").click(function(e) {
+                e.preventDefault()
+                updateCart($(this))
+            })
+            $('.cart-close').click(function(e){
+                e.preventDefault()
+                closeCart()
+            })
+        })
+    }
+    function closeCart() {
+        $('.cart-ajax').removeClass('active').fadeOut(100)
+    }
 })

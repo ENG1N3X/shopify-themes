@@ -56,8 +56,8 @@
                     name="updates[]"
                     id="updates_{{ item.id }}"
                     value="{{ item.quantity }}"
-                    data-key="{{ item.key }}"
-                    class="cart-ajax-update"
+                    data-item-key="{{ item.key }}"
+                    class="update-cart"
                   />
                 </td>
                 <td class="content">
@@ -69,9 +69,9 @@
                     name="updates[]"
                     id="updates_{{ item.id }}"
                     value="0"
-                    data-key="{{ item.key }}"
+                    data-item-key="{{ item.key }}"
                     style="cursor: pointer;"
-                    class="cart-ajax-delete"
+                    class="delete-from-cart"
                   >
                     X
                   </button>

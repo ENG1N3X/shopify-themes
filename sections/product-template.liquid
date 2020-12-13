@@ -22,8 +22,9 @@
                     </div>
 
                     {% assign current_variant = product.selected_or_first_available_variant %}
-                    <form class="grid-x" action="/cart/add" method="post" enctype="multipart/form-data">
-                      
+
+                    {% form "product", product, class: "grid-x add-to-cart" %}
+
                       <select name="id" class="cell">
                         {% for variant in product.variants %}
                           {% if variant.available %}
@@ -31,7 +32,7 @@
                               {{ variant.title }} - {{ variant.price | money_with_currency }}
                             </option>
                           {% else %}
-                            <option disabled="disabled">
+                            <option disabled>
                               {{ variant.title }} - sold out
                             </option>
                           {% endif %}
@@ -45,10 +46,10 @@
 
                       <div class="cell grid-x">
                         <div class="cell">
-                          <button type="submit" name="add" class="btn btn-primary">Add to cart</button>
+                          <button type="submit" class="btn btn-primary">Add to cart</button>
                         </div>
                       </div>
-                    </form>
+                    {% endform %}
 
                     <div class="description">{{ product.description }}</div>
                 </div>
