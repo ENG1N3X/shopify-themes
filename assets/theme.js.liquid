@@ -29,18 +29,12 @@ $(function() {
     // owl.carousel sliders
 
     //-- index-template
-    $('#index-template-slider').owlCarousel({
+    const $indexTemplateSlider = $('#index-template-slider').owlCarousel({
         nav: false,
         dots: false,
         loop: true,
         items: 1
     });
-
-    document.addEventListener("shopify:section:load", function(event) {
-        // reload slide TODO
-        console.log(event)
-        console.log($(this))
-    })
 
     //-- product-template
     $('#product-template-slider').owlCarousel({
@@ -49,4 +43,36 @@ $(function() {
         loop: true,
         items: 1
     });
+
+    //-- Events of sections
+    // $(document).on("shopify:section:load", function(event) {
+    //     console.log("shopify:section:load triggered.")
+    //     shopifySectionLoad($(this), event)
+    // })
+
+    // function shopifySectionLoad($this, event) {
+    //     // console.log($this, event)
+    //     // console.log("Target", event.target)
+    //     // const $sectionID = $("#" + event.target.id)
+    //     // console.log($sectionID)
+    //     // const blockForReload = $sectionID.find(".index-slider.owl-carousel")
+    //     // console.log(blockForReload)
+    //     $indexTemplateSlider.trigger('refresh.owl.carousel');
+    // }
+    //-- Events of blocks
+    $(document).on("shopify:block:select", function(event) {
+        console.log("shopify:block:select triggered.")
+        shopifyBlockSelect($(this), event)
+    })
+
+    function shopifyBlockSelect($this, event) {
+        console.log($this, event)
+        console.log("Target", event.target)
+        console.log("Target parent", $(event.target).parent()[0].id)
+        // const $sectionID = $("#" + event.target.id)
+        // console.log($sectionID)
+        // const blockForReload = $sectionID.find(".index-slider.owl-carousel")
+        // console.log(blockForReload)
+        $indexTemplateSlider.trigger('refresh.owl.carousel');
+    }
 })
