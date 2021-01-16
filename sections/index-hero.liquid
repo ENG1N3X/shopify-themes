@@ -1,0 +1,46 @@
+<!-- index-hero -->
+<section class="hero">
+    <div id="index-template-slider" class="index-slider owl-carousel">
+        {% for block in section.blocks %}
+            {% if block.type == "slide" %}
+                <div class="image" {{ block.shopify_attributes }}>
+                    {% assign image = block.settings.image | img_url: 'master' %}
+                    <img src="{{ image }}" alt="{{ block.settings.image_alt | downcase }}">
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+<!-- index-hero // -->
+{% schema %}
+{
+    "name": "Hero",
+    "class": "index-hero-section",
+    "settings": [],
+    "blocks": [
+        {
+            "name": "Slide",
+            "type": "slide",
+            "settings": [
+               {
+                   "type": "image_picker",
+                   "id": "image",
+                   "label": "Image"
+               },
+               {
+                   "type": "text",
+                   "id": "image_alt",
+                   "label": "Image alt",
+                   "default": "image-alt"
+               }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "Homepage Hero",
+            "name": "Hero"
+        }
+    ]
+}
+{% endschema %}

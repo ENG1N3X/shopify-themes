@@ -28,6 +28,20 @@ $(function() {
 
     // owl.carousel sliders
 
+    //-- index-template
+    $('#index-template-slider').owlCarousel({
+        nav: false,
+        dots: false,
+        loop: true,
+        items: 1
+    });
+
+    document.addEventListener("shopify:section:load", function(event) {
+        // reload slide TODO
+        console.log(event)
+        console.log($(this))
+    })
+
     //-- product-template
     $('#product-template-slider').owlCarousel({
         nav: false,
