@@ -86,9 +86,34 @@
           "title": "Коллекции",
           "range": 6
         }
+      },
+      "161079528444721c9e": {
+        "type": "index-hero",
+        "blocks": {
+          "cf3a2e12-4895-464b-adae-c6f6b39555b2": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/1920x1080.png",
+              "image_alt": "slide-1"
+            }
+          },
+          "eda01a5c-d0f9-4793-92eb-b55cadf01900": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/1920x1080.png",
+              "image_alt": "image-alt"
+            }
+          }
+        },
+        "block_order": [
+          "cf3a2e12-4895-464b-adae-c6f6b39555b2",
+          "eda01a5c-d0f9-4793-92eb-b55cadf01900"
+        ],
+        "settings": {}
       }
     },
     "content_for_index": [
+      "161079528444721c9e",
       "1603374055827fcba9",
       "1603381326f1dbd2fe",
       "1603378886cbc2c810",

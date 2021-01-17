@@ -29,50 +29,87 @@ $(function() {
     // owl.carousel sliders
 
     //-- index-template
-    const $indexTemplateSlider = $('#index-template-slider').owlCarousel({
-        nav: false,
-        dots: false,
-        loop: true,
-        items: 1
-    });
+    function indexTemplateSlider() {
+        const $indexTemplateSlider = $('#index-template-slider').owlCarousel({
+            nav: false,
+            dots: false,
+            loop: true,
+            items: 1,
+            onInitialized: callback
+        });
+        function callback(event) {
+            const owlID = event.target.id;
+            console.log(`${owlID} has been initialized.`)
+        }
+    }
 
     //-- product-template
-    $('#product-template-slider').owlCarousel({
-        nav: false,
-        dots: true,
-        loop: true,
-        items: 1
-    });
+    function productTemplateSlider() {
+        const $productTemplateSlider =  $('#product-template-slider').owlCarousel({
+            nav: false,
+            dots: true,
+            loop: true,
+            items: 1,
+            onInitialized: callback
+        });
+        function callback(event) {
+            const owlID = event.target.id;
+            console.log(`${owlID} has been initialized.`)
+        }
+    }
 
-    //-- Events of sections
-    // $(document).on("shopify:section:load", function(event) {
-    //     console.log("shopify:section:load triggered.")
-    //     shopifySectionLoad($(this), event)
-    // })
+    //-- init sliders
+    (function initSliders(){
+        indexTemplateSlider()
+        productTemplateSlider()
+    }())
 
-    // function shopifySectionLoad($this, event) {
-    //     // console.log($this, event)
-    //     // console.log("Target", event.target)
-    //     // const $sectionID = $("#" + event.target.id)
-    //     // console.log($sectionID)
-    //     // const blockForReload = $sectionID.find(".index-slider.owl-carousel")
-    //     // console.log(blockForReload)
-    //     $indexTemplateSlider.trigger('refresh.owl.carousel');
-    // }
-    //-- Events of blocks
-    $(document).on("shopify:block:select", function(event) {
+    //-- Events of sections and blocks
+    $(document).on("shopify:section:load", function(event) {
+        console.log("shopify:section:load triggered.")
+        shopifySectionLoad($(this), event)
+    }).on("shopify:section:unload", function(event) {
+        console.log("shopify:section:unload triggered.")
+        // shopifySectionUnload($(this), event)
+    }).on("shopify:section:select", function(event) {
+        console.log("shopify:section:select triggered.")
+        // shopifySectionSelect($(this), event)
+    }).on("shopify:section:deselect", function(event) {
+        console.log("shopify:section:deselect triggered.")
+        // shopifySectionDeselect($(this), event)
+    }).on("shopify:section:reorder", function(event) {
+        console.log("shopify:section:reorder triggered.")
+        // shopifySectionReorder($(this), event)
+    }).on("shopify:block:select", function(event) {
         console.log("shopify:block:select triggered.")
-        shopifyBlockSelect($(this), event)
+        // shopifyBlockSelect($(this), event)
+    }).on("shopify:block:deselect", function(event) {
+        console.log("shopify:block:deselect triggered.")
+        // shopifyBlockDeselect($(this), event)
     })
 
+    function shopifySectionLoad($this, event) {
+        // console.log($this, event)
+        // console.log("Target", event.target)
+        $("#index-template-slider").trigger('destroy.owl.carousel');
+        indexTemplateSlider()
+    }
+    function shopifySectionUnload($this, event) {
+        // console.log($this, event)
+    }
+    function shopifySectionSelect($this, event) {
+        // console.log($this, event)
+    }
+    function shopifySectionDeselect($this, event) {
+        // console.log($this, event)
+    }
+    function shopifySectionReorder($this, event) {
+        // console.log($this, event)
+    }
     function shopifyBlockSelect($this, event) {
-        console.log($this, event)
-        console.log("Target", event.target)
-        console.log("Target parent", $(event.target).parent()[0].id)
-        // const $sectionID = $("#" + event.target.id)
-        // console.log($sectionID)
-        // const blockForReload = $sectionID.find(".index-slider.owl-carousel")
-        // console.log(blockForReload)
-        $indexTemplateSlider.trigger('refresh.owl.carousel');
+        // console.log($this, event)
+    }
+    function shopifyBlockDeselect($this, event) {
+        // console.log($this, event)
     }
 })
