@@ -1,4 +1,6 @@
 $(function() {
+    window.theme = window.theme || {}
+
     // header size
     $(document).scroll(function() {
         if ($(window).width() > 639) {
@@ -27,17 +29,19 @@ $(function() {
     })
 
     // owl.carousel sliders
+    theme.indexTemplateSlider = '#index-template-slider'
+    theme.productTemplateSlider = '#product-template-slider'
 
     //-- index-template
     function indexTemplateSlider() {
-        const $indexTemplateSlider = $('#index-template-slider').owlCarousel({
+        const $indexTemplateSlider = $(theme.indexTemplateSlider).owlCarousel({
             nav: false,
             dots: false,
-            loop: true,
+            loop: false,
             items: 1,
-            onInitialized: callback
+            onInitialized
         });
-        function callback(event) {
+        function onInitialized(event) {
             const owlID = event.target.id;
             console.log(`${owlID} has been initialized.`)
         }
@@ -45,14 +49,14 @@ $(function() {
 
     //-- product-template
     function productTemplateSlider() {
-        const $productTemplateSlider =  $('#product-template-slider').owlCarousel({
+        $(theme.productTemplateSlider).owlCarousel({
             nav: false,
             dots: true,
             loop: true,
             items: 1,
-            onInitialized: callback
+            onInitialized
         });
-        function callback(event) {
+        function onInitialized(event) {
             const owlID = event.target.id;
             console.log(`${owlID} has been initialized.`)
         }
@@ -90,9 +94,10 @@ $(function() {
 
     function shopifySectionLoad($this, event) {
         // console.log($this, event)
-        // console.log("Target", event.target)
-        $("#index-template-slider").trigger('destroy.owl.carousel');
-        indexTemplateSlider()
+        if($(event.target).hasClass('index-hero-section-shopify-event')) {
+            $(theme.indexTemplateSlider).trigger('destroy.owl.carousel');
+            indexTemplateSlider()
+        }
     }
     function shopifySectionUnload($this, event) {
         // console.log($this, event)

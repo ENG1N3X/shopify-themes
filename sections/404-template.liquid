@@ -2,7 +2,16 @@
 <section class="error-page">
     <h1>{{ section.settings.title }}</h1>
     <p>{{ section.settings.desc }}</p>
-    <a href="/" class="btn btn-inherit">{{ section.settings.btn }}</a>
+    <div class="grid-x align-center margin-bottom-1">
+        <div class="cell small-2">
+            <a href="{{ shop.url }}" class="btn btn-secondary">{{ section.settings.btn }}</a>
+        </div>
+    </div>
+    <div class="grid-x align-center">
+        <div class="cell small-2">
+            <a href="#" onClick="history.back(); return false;" class="btn btn-inherit">Previous page</a>
+        </div>
+    </div>
 </section>
 <!-- 404 // -->
 {% schema %}
@@ -19,7 +28,7 @@
             "type": "text",
             "id": "desc",
             "label": "Description",
-            "default": "Oooops. We did not find this page!"
+            "default": "The page you were looking for does not exist."
         },
         {
             "type": "text",
