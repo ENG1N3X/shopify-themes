@@ -7,7 +7,7 @@
         <h2 class="main-title">{{ _blog.title }}</h2>
 
         <div class="grid-x">
-            {% assign _articles = _blog.articles %}
+            {% assign _articles = _blog.articles | reverse %}
             {% for _article in _articles limit: section.settings.range %}
                 {% assign classes = "cell" %}
                 {% if forloop.index == 2 or forloop.index == 4 or forloop.index == 6 or forloop.index == 8 or forloop.index == 10 or forloop.index == 12%}

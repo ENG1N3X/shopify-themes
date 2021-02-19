@@ -1,0 +1,202 @@
+<!-- index-hero -->
+<section class="hero">
+	<div id="index-template-slider" class="slider owl-carousel">
+		{% for block in section.blocks %}
+			{% if block.type == "slide" %}
+				<div class="slide" {{ block.shopify_attributes }}>
+					<div style="background-color: {{ block.settings.bg_color }};" class="background">
+						{% if block.settings.display == "video" %}
+							{% if block.settings.video %}
+								<video playsinline autoplay muted loop preload>
+									<source 
+										src="{{ block.settings.video }}" 
+										type="video/mp4">
+									<p>Your browser does not support our video!</p>
+								</video>
+							{% endif %}
+						{% else %}
+							{% if block.settings.image %}
+								{% assign image = block.settings.image | img_url: 'master' %}
+								<img src="{{ image }}" alt="{{ block.settings.image_alt | downcase }}">
+							{% endif %}
+						{% endif %}
+					</div>
+					{% if block.settings.caption_show %}
+						<div class="grid-container">
+							{% if block.settings.caption_position == "center" %}
+								{% assign position = "margin: 0 auto;" %}
+							{% elsif block.settings.caption_position == "right" %}
+								{% assign position = "margin-left: auto;" %}
+							{% else %}
+								{% assign position = "margin-right: auto;" %}
+							{% endif %}
+							<div class="caption" style="{{ position }}">
+								{% if block.settings.title %}
+									<h4 style="color: {{ block.settings.title_color }}" class="title">{{ block.settings.title }}</h4>
+								{% endif %}
+								{% if block.settings.text %}
+									{% if block.settings.text_url %}
+										<a style="color: {{ block.settings.text_color }}" href="{{ block.settings.text_url }}" class="text">{{ block.settings.text }}</a>
+									{% else %}
+										<p style="color: {{ block.settings.text_color }}" class="text">{{ block.settings.text }}</p>
+									{% endif %}
+								{% endif %}
+								{% if block.settings.btn_show %}
+									{% if block.settings.btn_url %}
+										<a style="color: {{ block.settings.btn_color }}" href="{{ block.settings.btn_url }}" class="btn btn-primary">{{ block.settings.btn }}</a>
+									{% else %}
+										<a style="color: {{ block.settings.btn_color }}" class="btn btn-primary">{{ block.settings.btn }}</a>
+									{% endif %}
+								{% endif %}
+							</div>
+						</div>
+					{% endif %}
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+</section>
+<!-- index-hero // -->
+{% schema %}
+{
+	"name": "Hero",
+	"class": "index-hero-section-shopify-event",
+	"settings": [],
+	"blocks": [
+		{
+			"name": "Slide",
+			"type": "slide",
+			"settings": [
+				{
+					"type": "header",
+					"content": "Background content"
+				},
+				{
+					"type": "select",
+					"id": "display",
+					"label": "Image",
+					"options": [
+						{
+							"value": "image",
+							"label": "Image"
+						},
+						{
+							"value": "video",
+							"label": "Video"
+						}
+					]
+				},
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "text",
+					"id": "image_alt",
+					"label": "Image alt",
+					"default": "image-alt"
+				},
+				{
+					"type": "url",
+					"id": "video",
+					"label": "Video"
+				},
+				{
+					"type": "color",
+					"id": "bg_color",
+					"label": "Background color",
+					"default": "#000"
+				},
+				{
+					"type": "header",
+					"content": "Main content"
+				},
+				{
+					"type": "checkbox",
+					"id": "caption_show",
+					"label": "Caption visibility",
+					"default": true
+				},
+				{
+					"type": "select",
+					"id": "caption_position",
+					"label": "Caption position",
+					"options": [
+						{
+							"value": "center",
+							"label": "Center"
+						},
+						{
+							"value": "left",
+							"label": "Left"
+						},
+						{
+							"value": "right",
+							"label": "Right"
+						}
+					],
+					"default": "center"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title",
+					"default": "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+				},
+				{
+					"type": "color",
+					"id": "title_color",
+					"label": "Title color",
+					"default": "#fff"
+				},
+				{
+					"type": "textarea",
+					"id": "text",
+					"label": "Text",
+					"default": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae minus quis corrupti, autem cupiditate amet expedita dignissimos accusamus delectus fuga rem veritatis modi deleniti sapiente voluptatibus error. Commodi, inventore libero?"
+				},
+				{
+					"type": "color",
+					"id": "text_color",
+					"label": "Text color",
+					"default": "#fff"
+				},
+				{
+					"type": "url",
+					"id": "text_url",
+					"label": "Text URL"
+				},
+				{
+					"type": "text",
+					"id": "btn",
+					"label": "Button text"
+				},
+				{
+					"type": "color",
+					"id": "btn_color",
+					"label": "Button color",
+					"default": "#fff"
+				},
+				{
+					"type": "url",
+					"id": "btn_url",
+					"label": "Button URL"
+				},
+				{
+					"type": "checkbox",
+					"id": "btn_show",
+					"label": "Button visibility",
+					"default": true
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"category": "Homepage Hero",
+			"name": "Hero"
+		}
+	]
+}
+{% endschema %}
