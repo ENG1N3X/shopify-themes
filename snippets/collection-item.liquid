@@ -1,8 +1,0 @@
-<a href="{{ collection.url }}" class="{{ classes }} collection-item">
-    {% if collection.image %}
-        <img src="{{ collection.image | img_url: 'master' }}" alt="{{ collection.title }}">
-    {% else %}
-        <img src="https://via.placeholder.com/1920x1080" alt="{{ collection.title }}">
-    {% endif %}
-    <h4 class="title">{{ collection.title }}</h4>
-</a>

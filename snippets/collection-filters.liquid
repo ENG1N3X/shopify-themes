@@ -1,9 +1,0 @@
-<!-- collection-filters -->
-<section class="collection-sort">
-    <select name="sort_by" onchange="location = this.value;">
-        {% for option in collection.sort_options %}
-            <option value="?sort_by={{ option.value }}">{{ option.name }}</option>
-        {% endfor %}
-    </select>
-</section>
-<!-- collection-filters // -->
