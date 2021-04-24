@@ -1,8 +1,7 @@
 # Themekit
 ```bash
 theme watch --env=prod & theme open --env=prod
-theme watch --env=staging & theme open --env=staging
-theme watch --env=dev & theme open --env=dev
+theme watch --env=releases & theme open --env=releases
 ```
 
 ## Themekit flags
