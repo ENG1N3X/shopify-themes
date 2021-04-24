@@ -1,0 +1,46 @@
+<div class="grid-container">
+    <h1>Search</h1>
+
+    {% paginate search.results by section.settings.range %}
+        <form class="grid-x" action="/search" method="get" role="search">
+            <input type="search" class="cell medium-9 hover-opacity" name="q" value="{{ search.terms | escape }}">
+            <button type="submit" class="cell medium-3 btn primary hover-opacity">search</button>
+        </form>
+
+        <div class="grid-x grid-padding-x grid-padding-y">
+            {% if search.performed %}
+                {% for item in search.results %}
+                    {% if item.object_type == "product" %}
+                        {% render "product-snippet", product: item, classes: "cell medium-6 large-3" %}
+                    {% else %}
+                        {% render "article-snippet", article: item, classes: "cell medium-6 large-3" %}
+                    {% endif %}
+                {% else %}
+                    <p class="default-text">No results</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        {% render 'pagination-snippet' %}
+
+    {% endpaginate %}
+</div>
+
+{% schema %}
+{
+    "name": "Search",
+    "tag": "section",
+    "class": "search",
+    "settings": [
+        {
+            "type": "range",
+            "id": "range",
+            "label": "Search result per page",
+            "min": 1,
+            "max": 16,
+            "step": 1,
+            "default": 10
+        }
+    ]
+}
+{% endschema %}

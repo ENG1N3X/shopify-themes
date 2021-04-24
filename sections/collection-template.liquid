@@ -1,0 +1,28 @@
+<div class="grid-container">
+
+  {{ collection.title }}
+
+  {% paginate collection.products by 21 %}
+
+    <div class="grid-x grid-padding-x grid-padding-y">
+      {% for product in collection.products %}
+
+        {% render 'product-snippet', product: product, classes: "cell small-12 medium-6 large-4" %}
+
+      {% endfor %}
+    </div>
+
+    {% render 'pagination-snippet', paginate: paginate %}
+
+  {% endpaginate %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "tag": "section",
+  "class": "collection",
+  "settings": []
+}
+{% endschema %}

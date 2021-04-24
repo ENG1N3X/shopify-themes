@@ -1,0 +1,63 @@
+<section class="customer">
+    {% if customer %}
+        <div class="grid-container fluid">
+            <div class="grid-x align-justify align-middle">
+                <h1 class="heading">Account ({{ customer.first_name }})</h1>
+                <nav>
+                    <a href="/account/addresses" class="info-link">Addresess</a>
+                    <a href="/account/logout" class="info-link">Logout</a>
+                </nav>
+            </div>
+
+            <h2 class="subheading">Orders</h2>
+
+            <div class="grid-x" style="overflow-x: auto;">
+                {% paginate customer.orders by 10 %}
+                    <div class="cell" style="min-width: 500px;">
+                        <div class="grid-x" style="padding: 10px 5px;">
+                            <div class="cell auto">
+                                Name
+                            </div>
+                            <div class="cell auto">
+                                Status
+                            </div>
+                            <div class="cell auto">
+                                Total
+                            </div>
+                            <div class="cell auto">
+                                Created
+                            </div>
+                        </div>
+                        {% for order in customer.orders %}
+                            <div class="grid-x" style="width: 100%; padding: 10px 5px;">
+                                <div class="cell auto">
+                                    {{ order.name }}
+                                </div>
+                                <div class="cell auto">
+                                    {{ order.financial_status }}
+                                </div>
+                                <div class="cell auto">
+                                    {{ order.total_price | money}}
+                                </div>
+                                <div class="cell auto">
+                                    {{ order.created_at | time_tag: format: "date_at_time"}}
+                                </div>
+                            </div>
+                        {% else %}
+                            <p class="text">You haven't placed any orders yet.</p>
+                        {% endfor %}
+                    </div>
+
+                    {% include 'pagination-snippet', paginate: paginate %}
+
+                {% endpaginate %}
+            </div>
+        </div>
+    {% else %}
+        <script>
+            if (!Shopify.desginMode) {
+                window.location = "/account/login";
+            }
+        </script>
+    {% endif %}
+</section>

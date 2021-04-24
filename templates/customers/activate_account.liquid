@@ -1,0 +1,20 @@
+<section class="customer">
+    {% if customer %}
+        <script>
+            window.location = "/account";
+        </script>
+    {% else %}
+        <div class="grid-container fluid">
+            {% form 'activate_customer_password', class: "form-reset-activate" %}
+                <h1 class="form-title">Activate account</h1>
+
+                {{ form.errors | default_errors }}
+
+                <input type="password" placeholder="Password" value="" name="customer[password]" id="password" size="30" required/>
+                <input type="password" placeholder="Confirm password" value="" name="customer[password_confirmation]" id="password_confirmation" size="30" required/>
+        
+                <button type="submit" class="btn primary">Activate</button>
+            {% endform %}
+        </div>
+    {% endif %}
+</section>

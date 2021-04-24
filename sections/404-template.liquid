@@ -1,0 +1,37 @@
+{% layout '404' %}
+
+<h1 class="heading">
+    {{ section.settings.heading }}
+</h1>
+<p class="text">
+    {{ section.settings.textarea }}
+</p>
+<a href="/" class="btn primary">{{ section.settings.btn }}</a>
+
+{% schema %}
+{
+    "name": "404",
+    "tag": "section",
+    "class": "error grid-container",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Page Not found!"
+        },
+        {
+            "type": "textarea",
+            "id": "textarea",
+            "label": "Text",
+            "default": "The page you were looking for does not exist."
+        },
+        {
+            "type": "text",
+            "id": "btn",
+            "label": "Button",
+            "default": "Back to home page"
+        }
+    ]
+}
+{% endschema %}
