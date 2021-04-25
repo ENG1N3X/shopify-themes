@@ -1,0 +1,36 @@
+{% comment %}
+EXAMPLE RELEASE DATE FORMAT: release-date::2021-06-24T14:34:43-05:00 
+{% endcomment %}
+
+<div id="root" class="grid-container">
+  <div class="grid-x">
+    <div class="cell small-6">
+
+      {% for image in product.images %}
+        <img src="{{ image.src | img_url: 'medium' }}" alt="{{ forloop.index }}">
+      {% endfor %}
+
+    </div>
+    <div class="cell small-6">
+      <h3>{{ product.title }}</h3>
+      <p>{{ product.content }}</p>
+
+      <button 
+        type="button" 
+        class="btn primary" 
+        @click="isShowForm = !isShowForm"
+      >Enter Draw</button>
+    </div>
+  </div>
+
+  {% render 'form-release', product: product %}
+</div>
+
+{% schema %}
+{
+  "name": "Product Release",
+  "class": "release",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

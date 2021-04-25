@@ -1,0 +1,149 @@
+<form 
+  id="form-release"
+  v-show="isShowForm"
+  >
+
+  <section 
+    v-show="isShowFirst"
+    class="step step-1"
+    >
+
+    <div class="grid-y align-justify">
+
+      <div class="cell small-2">
+        <h4 class="heading">Select variant</h4>
+      </div>
+      <div class="cell small-8">
+        <div class="product-variants">
+          {% for variant in product.variants %}
+            <div class="product-variant">
+              <input 
+                type="radio" 
+                id="{{ variant.id }}" 
+                value="{{ variant.id }}"
+                name="id"
+                @click="selectedVariant = {{ variant.id }};"
+                {% if _checked == blank and variant.available %}
+                  {% assign _checked = true %}
+                  checked
+                {% endif %}
+                {% unless variant.available %}
+                  disabled
+                {% endunless %}
+              >
+              <label for="{{ variant.id }}">{{ variant.title }}</label>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="cell small-2 flex-container align-right flex-dir-column">
+        <div class="grid-x">
+          <div class="cell small-6">
+            <button 
+              type="button" 
+              class="btn primary"
+              disabled
+            >Previous Step</button>
+          </div>
+          <div class="cell small-6">
+            <button 
+              type="button" 
+              class="btn secondary"
+              @click.prevent="isShowFirst = false; isShowSecond = true;"
+            >Next Step</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section 
+    v-show="isShowSecond"
+    class="step step-2">
+
+    <div class="grid-y align-justify">
+
+      <div class="cell small-2">
+        <h4 class="heading">Shipping Info</h4>
+      </div>
+      <div class="cell small-8">
+
+        <div class="main-content">
+
+          <div class="grid-x grid-padding-x grid-padding-y">
+            <div class="cell medium-6">
+              <label for="shipping__first_name">First Name</label>
+              <input type="text" v-model="customerData.shippingAddress.firstName" name="shipping__first_name" placeholder="John" class="cell" required>
+            </div>
+            <div class="cell medium-6">
+              <label for="shipping__last_name">Last Name</label>
+              <input type="text" v-model="customerData.shippingAddress.lastName" name="shipping__last_name" placeholder="Doe" class="cell" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn primary">submit</button>
+
+        </div>
+
+      </div>
+      <div class="cell small-2 flex-container align-right flex-dir-column">
+        <div class="grid-x">
+          <div class="cell small-6">
+            <button 
+              type="button" 
+              class="btn primary"
+              @click.prevent="isShowSecond = false; isShowFirst = true;"
+            >Previous Step</button>
+          </div>
+          <div class="cell small-6">
+            <button 
+              type="button" 
+              class="btn secondary"
+              @click.prevent="isShowSecond = false; isShowThird = true;"
+            >Next Step</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section 
+    v-show="isShowThird"
+    class="step step-3">
+
+    <div class="grid-y align-justify">
+
+      <div class="cell small-2">
+        <h4 class="heading">stripe</h4>
+      </div>
+      <div class="cell small-8">
+        
+      </div>
+      <div class="cell small-2 flex-container align-right flex-dir-column">
+        <div class="grid-x">
+          <div class="cell small-6">
+            <button 
+              type="button" 
+              class="btn primary"
+              @click.prevent="isShowThird = false; isShowSecond = true;"
+            >Previous Step</button>
+          </div>
+          <div class="cell small-6">
+            <button 
+              type="button" 
+              class="btn secondary"
+              @click.prevent="return false;"
+            >Enter Draw</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+</form>

@@ -1,0 +1,223 @@
+const Root = {
+	delimiters: ["[[", "]]"],
+	data() {
+		return {
+			// Main form & steps display status
+			isShowForm: true,
+			isShowFirst: false,
+			isShowSecond: true,
+			isShowThird: false,
+			// selected product variant
+			selectedVariant: "",
+			// customer info
+      customerData: {
+        email: "",
+        firstName: "",
+        lastName: "",
+        shopifyCustomerId: "",
+        shippingAddress: {
+          firstName: "",
+          lastName: "",
+          countryCode: "",
+          phone: "",
+          state: "",
+          city: "",
+          address: "",
+          zip: "",
+        },
+        billingAddress: {
+          firstName: "",
+          lastName: "",
+          countryCode: "",
+          phone: "",
+          state: "",
+          city: "",
+          address: "",
+          zip: "",
+        },
+      }
+		}
+	},
+	mounted() {
+		console.log("mounted")
+
+    $("#form-release").validate({
+      debug: true,
+			// onsubmit: false,
+			errorElement: "span",
+			errorClass: "error-msg",
+      validClass: "success-msg",
+      success: function(label) {
+        label.addClass("success-msg").text("Valid!")
+      },
+			ignore: "#same-data",
+      rules: {
+				shipping__first_name: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				shipping__last_name: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				shipping__country: {
+					required: true,
+				},
+				shipping__address: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				shipping__city: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				shipping__state: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				shipping__postcode: {
+					required: true,
+					digits: true,
+          min: 3,
+					minlength: 3,
+					maxlength: 6,
+					pattern: /^[0-9]{5,6}(?:-[0-9]{4})?$/,
+				},
+				billing__first_name: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				billing__last_name: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				billing__country: {
+					required: true,
+				},
+				billing__address: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				billing__city: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				billing__state: {
+					required: true,
+					minlength: 2,
+					maxlength: 50,
+				},
+				billing__postcode: {
+					required: true,
+					digits: true,
+          min: 3,
+					minlength: 3,
+					maxlength: 6,
+					pattern: /^[0-9]{5,6}(?:-[0-9]{4})?$/,
+				},
+			},
+			messages: {
+				shipping__first_name: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				shipping__last_name: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				shipping__country: {
+					required: "This select is required!",
+				},
+				shipping__address: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				shipping__city: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				shipping__state: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				shipping__postcode: {
+					required: "This input is required!",
+          min: jQuery.validator.format("This input required more than {0} numbers!"),
+					minlength: jQuery.validator.format("At least {0} numbers!"),
+					maxlength: jQuery.validator.format("No more than {0} numbers!"),
+					pattern: "This format is invalid!",
+				},
+				billing__first_name: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				billing__last_name: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				billing__country: {
+					required: "This select is required!",
+				},
+				billing__address: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				billing__city: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				billing__state: {
+					required: "This input is required!",
+					minlength: jQuery.validator.format("At least {0} characters!"),
+					maxlength: jQuery.validator.format("No more than {0} characters!"),
+				},
+				billing__postcode: {
+					required: "This input is required!",
+          min: jQuery.validator.format("This input required more than {0} numbers!"),
+					minlength: jQuery.validator.format("At least {0} numbers!"),
+					maxlength: jQuery.validator.format("No more than {0} numbers!"),
+					pattern: "This format is invalid!",
+				},
+			},
+      submitHandler: function (form) {
+				// setupPayment()
+        console.log("submit")
+			},
+			invalidHandler: function (event, validator) {
+				const errors = validator.numberOfInvalids()
+				if (errors) {
+					console.error("Release form not valid! Total errors", errors)
+          // alert(errors)
+					// releases.utils.showToast(`Release form not valid!<br>Total errors ${errors}!`, "error")
+				}
+			},
+
+    });
+	},
+	computed: {},
+	methods: {
+		// formTrigger(variant) {
+		//   console.log(this.selectedVariant)
+		// }
+	},
+}
+
+Vue.createApp(Root).mount("#root")

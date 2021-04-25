@@ -246,7 +246,7 @@ theme.carouseles = (function () {
 
 theme.loadProductRecomendations = async function () {
 	//-- Recommendations on product page
-	const $container = $(".recommendations")
+	const $container = $("#recommendations")
 	const $section = $container.parent().parent()
 
 	if ($container.length > 0) {
@@ -322,5 +322,5 @@ $(function () {
 })
 
 $(window).on("load", function () {
-	$("#page-preloader").fadeOut("slow")
+	$("#page-preloader").fadeOut("200")
 })

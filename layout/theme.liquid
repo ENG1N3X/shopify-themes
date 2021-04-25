@@ -15,7 +15,6 @@
   {{ content_for_header }}
 
   {% render "style-tags" %}
-  {% render "script-tags" %}
 </head>
 <body class="{% if template.name == "404" %}error-template{% elsif template contains "customers" %}customer-template{% else %}{{ template.name }}-template{% endif %} {% if template.suffix %}{{ template.suffix }}{% endif %}">
   <div id="page-preloader"></div>
@@ -29,5 +28,7 @@
   </main>
 
   {% section 'footer' %}
+
+  {% render "script-tags" %}
 </body>
 </html>
