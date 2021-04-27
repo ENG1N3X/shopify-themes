@@ -72,7 +72,7 @@
 
         <div class="main-content">
 
-          <div class="grid-x grid-padding-x grid-padding-y">
+          <div id="shipping" class="grid-x grid-padding-x grid-padding-y">
             <div class="cell medium-6">
               <label for="shipping__first_name">First Name</label>
               <input type="text" v-model="customerData.shippingAddress.firstName" name="shipping__first_name" placeholder="John" class="cell" required>
@@ -81,10 +81,34 @@
               <label for="shipping__last_name">Last Name</label>
               <input type="text" v-model="customerData.shippingAddress.lastName" name="shipping__last_name" placeholder="Doe" class="cell" required>
             </div>
+            <div class="cell medium-6">
+              <label for="shipping__phone">Phone Number</label>
+              <input type="tel" v-model="customerData.shippingAddress.phone" id="shipping__phone" name="shipping__phone" placeholder="(XXX)-YYYY-ZZZ" class="cell" required>
+            </div>
           </div>
 
-          <button type="submit" class="btn primary">submit</button>
+          <div class="grid-x grid-padding-x grid-padding-y">
+            <div class="cell">
+              <input type="checkbox" class="same-data" id="same-data" checked>
+              <label @click="isShowBilling = !isShowBilling;" for="same-data">Use the same address for billing</label>
+            </div>
+          </div>
 
+          <div v-show="isShowBilling" id="billing" class="grid-x grid-padding-x grid-padding-y">
+            <div class="cell medium-6">
+              <label for="billing__first_name">First Name</label>
+              <input type="text" v-model="customerData.billingAddress.firstName" name="billing__first_name" placeholder="John" class="cell" required>
+            </div>
+            <div class="cell medium-6">
+              <label for="billing__last_name">Last Name</label>
+              <input type="text" v-model="customerData.billingAddress.lastName" name="billing__last_name" placeholder="Doe" class="cell" required>
+            </div>
+            <div class="cell medium-6">
+              <label for="billing__phone">Phone Number</label>
+              <input type="tel" v-model="customerData.billingAddress.phone" id="billing__phone" name="billing__phone" placeholder="(XXX)-YYYY-ZZZ" class="cell" required>
+            </div>
+          </div>
+          
         </div>
 
       </div>
@@ -99,10 +123,11 @@
           </div>
           <div class="cell small-6">
             <button 
-              type="button" 
+              type="submit" 
               class="btn secondary"
-              @click.prevent="isShowSecond = false; isShowThird = true;"
+              @click="itiShippingPhoneValid(); itiBillingPhoneValid(); updateBillingData()"
             >Next Step</button>
+            <!-- @click.prevent="isShowSecond = false; isShowThird = true;" -->
           </div>
         </div>
       </div>

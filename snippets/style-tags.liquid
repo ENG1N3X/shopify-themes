@@ -22,6 +22,7 @@
 
 {{ "foundation-grid-weberous.min.css" | asset_url | stylesheet_tag }}
 {% if template.name == "product" and template.suffix == "release" %}
+	{{ "intlTelInput.min.css" | asset_url | stylesheet_tag }}
 	{{ "releases.scss.css" | asset_url | stylesheet_tag }}
 {% endif %}
 {{ "theme.scss.css" | asset_url | stylesheet_tag }}

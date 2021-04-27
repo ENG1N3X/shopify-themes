@@ -24,8 +24,13 @@ form#form-release {
 		padding: 20px;
 		.grid-y {
 			height: 100%;
-			.btn[type="button"] {
+			.btn[type="button"],
+			.btn[type="submit"] {
 				width: 100%;
+			}
+			.cell:nth-child(2) {
+				max-height: 300px;
+				overflow-y: auto;
 			}
 		}
 		label {
@@ -36,22 +41,75 @@ form#form-release {
 		}
 		input {
 			margin-bottom: 5px;
-
-			&.error-msg ~ span.error-msg {
-				color: red;
-			}
-			&.success-msg ~ span.success-msg {
-				color: green;
-			}
 		}
-		span.error-msg {
-			display: block;
+		span.error-msg,
+		p.error-msg {
+			display: block !important;
 			font-size: 12px;
 			line-height: 1.25;
+			color: red;
+			margin: 0;
+			&.success-msg {
+				color: green;
+			}
 		}
 	}
 	.heading {
 		text-transform: uppercase;
 		margin: 0;
+	}
+	input[type="checkbox"].same-data {
+		position: absolute;
+		z-index: -1;
+		opacity: 0;
+		margin-bottom: 0;
+		& + label {
+			font-family: "Montserrat", sans-serif;
+			font-weight: 600;
+			font-size: 9px;
+			letter-spacing: 0.035em;
+			text-transform: uppercase;
+			color: #000;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			position: relative;
+			user-select: none;
+			margin-bottom: 0;
+			&::before {
+				content: "";
+				display: inline-block;
+				width: 20px;
+				height: 20px;
+				border: 1px solid #000000;
+				margin-right: 10px;
+			}
+			&::after {
+				content: "";
+				display: block;
+				position: absolute;
+				width: 8px;
+				height: 12px;
+				top: 50%;
+				left: 5px;
+				transform: translateY(-50%) rotate(30deg);
+				border-right: 1px solid #000;
+				border-bottom: 1px solid #000;
+				margin-bottom: 0;
+				opacity: 0;
+			}
+		}
+		&:checked + label::after {
+			opacity: 1;
+		}
+	}
+	.iti {
+		margin-bottom: 5px;
+		.iti__flag {
+			background-image: url("{{ 'flags.png' | asset_url }}");
+			@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+				background-image: url("{{ 'flags@2x.png' | asset_url }}");
+			}
+		}
 	}
 }

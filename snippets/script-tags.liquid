@@ -11,6 +11,7 @@
   <!-- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script> -->
 {% endif %}
 {% if template.name == "product" and template.suffix == "release" %}
+  <script src="{{ 'intlTelInput-jquery.min.js' | asset_url }}"></script>  
   <script src="https://unpkg.com/vue@next"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js"></script>
