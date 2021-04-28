@@ -46,7 +46,7 @@ const Root = {
 		console.log("Releases form has been mounted!")
 		this.$nextTick(function () {
 			$("#form-release").validate({
-				debug: true,
+				debug: false,
 				// onsubmit: false,
 				errorElement: "span",
 				errorClass: "error-msg",
@@ -54,7 +54,8 @@ const Root = {
 				success: function (label) {
 					label.addClass("success-msg").text("Valid!")
 				},
-				ignore: "#same-data, #shipping__phone, #billing__phone",
+				ignore: "#same-data, input[name='variant_id']",
+				// ignore: "#same-data, #shipping__phone, #billing__phone",
 				rules: {
 					shipping__first_name: {
 						required: true,
@@ -66,32 +67,36 @@ const Root = {
 						minlength: 2,
 						maxlength: 50,
 					},
-					shipping__country: {
+					shipping__phone: {
 						required: true,
+						intlTelNumber: true, // custom validation method
 					},
-					shipping__address: {
-						required: true,
-						minlength: 2,
-						maxlength: 50,
-					},
-					shipping__city: {
-						required: true,
-						minlength: 2,
-						maxlength: 50,
-					},
-					shipping__state: {
-						required: true,
-						minlength: 2,
-						maxlength: 50,
-					},
-					shipping__postcode: {
-						required: true,
-						digits: true,
-						min: 3,
-						minlength: 3,
-						maxlength: 6,
-						pattern: /^[0-9]{5,6}(?:-[0-9]{4})?$/,
-					},
+					// shipping__country: {
+					// 	required: true,
+					// },
+					// shipping__address: {
+					// 	required: true,
+					// 	minlength: 2,
+					// 	maxlength: 50,
+					// },
+					// shipping__city: {
+					// 	required: true,
+					// 	minlength: 2,
+					// 	maxlength: 50,
+					// },
+					// shipping__state: {
+					// 	required: true,
+					// 	minlength: 2,
+					// 	maxlength: 50,
+					// },
+					// shipping__postcode: {
+					// 	required: true,
+					// 	digits: true,
+					// 	min: 3,
+					// 	minlength: 3,
+					// 	maxlength: 6,
+					// 	pattern: /^[0-9]{5,6}(?:-[0-9]{4})?$/,
+					// },
 					billing__first_name: {
 						required: true,
 						minlength: 2,
@@ -102,32 +107,36 @@ const Root = {
 						minlength: 2,
 						maxlength: 50,
 					},
-					billing__country: {
+					billing__phone: {
 						required: true,
+						intlTelNumber: true, // custom validation method
 					},
-					billing__address: {
-						required: true,
-						minlength: 2,
-						maxlength: 50,
-					},
-					billing__city: {
-						required: true,
-						minlength: 2,
-						maxlength: 50,
-					},
-					billing__state: {
-						required: true,
-						minlength: 2,
-						maxlength: 50,
-					},
-					billing__postcode: {
-						required: true,
-						digits: true,
-						min: 3,
-						minlength: 3,
-						maxlength: 6,
-						pattern: /^[0-9]{5,6}(?:-[0-9]{4})?$/,
-					},
+					// billing__country: {
+					// 	required: true,
+					// },
+					// billing__address: {
+					// 	required: true,
+					// 	minlength: 2,
+					// 	maxlength: 50,
+					// },
+					// billing__city: {
+					// 	required: true,
+					// 	minlength: 2,
+					// 	maxlength: 50,
+					// },
+					// billing__state: {
+					// 	required: true,
+					// 	minlength: 2,
+					// 	maxlength: 50,
+					// },
+					// billing__postcode: {
+					// 	required: true,
+					// 	digits: true,
+					// 	min: 3,
+					// 	minlength: 3,
+					// 	maxlength: 6,
+					// 	pattern: /^[0-9]{5,6}(?:-[0-9]{4})?$/,
+					// },
 				},
 				messages: {
 					shipping__first_name: {
@@ -139,6 +148,9 @@ const Root = {
 						required: "This input is required!",
 						minlength: jQuery.validator.format("At least {0} characters!"),
 						maxlength: jQuery.validator.format("No more than {0} characters!"),
+					},
+					shipping__phone: {
+						required: "This input is required!",
 					},
 					shipping__country: {
 						required: "This select is required!",
@@ -174,6 +186,9 @@ const Root = {
 						required: "This input is required!",
 						minlength: jQuery.validator.format("At least {0} characters!"),
 						maxlength: jQuery.validator.format("No more than {0} characters!"),
+					},
+					billing__phone: {
+						required: "This input is required!",
 					},
 					billing__country: {
 						required: "This select is required!",
@@ -203,27 +218,47 @@ const Root = {
 				},
 				submitHandler: function (form) {
 					// setupPayment()
-					console.log("submit")
+					alert("Submited!")
 				},
 				invalidHandler: function (event, validator) {
-					// const isShippingPhoneValid = this.itiShippingPhoneValid()
-					// const isBillingPhoneValid = this.itiBillingPhoneValid()
 					const errors = validator.numberOfInvalids()
-					// if (!isShippingPhoneValid) {
-					// 	errors++
-					// }
-					// if (!isBillingPhoneValid) {
-					// 	errors++
-					// }
 					if (errors) {
 						console.error("Release form not valid! Total errors", errors)
-						// alert(errors)
-						// releases.utils.showToast(`Release form not valid!<br>Total errors ${errors}!`, "error")
+						theme.utils.showToast(`Release form not valid!<br>Total errors ${errors}!`, "error")
 					}
 				},
 			})
 
-			$("input[name='shipping__phone']").intlTelInput({
+			// iti phone validator
+			this.itiErrors[-99] = "This input is required"
+			const $shippingPhone = $("input[name='shipping__phone']")
+			const $billingPhone = $("input[name='billing__phone']")
+
+			//-- custom validation method for phone number
+			$.validator.addMethod(
+				"intlTelNumber",
+				function (value, element) {
+					return this.optional(element) || $(element).intlTelInput("isValidNumber")
+				},
+				"Please enter a valid International Phone Number",
+			)
+				//-- custom validation method for phone number //
+
+			$shippingPhone.intlTelInput({
+				utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+				customContainer: "iti-shipping",
+				nationalMode: false,
+				autoPlaceholder: "aggressive",
+				separateDialCode: true,
+				initialCountry: "auto",
+				geoIpLookup: this.geoIpLookup,
+			}).on("countrychange", function () {
+				if (!this.isShowBilling) {
+					const countryData = $shippingPhone.intlTelInput("getSelectedCountryData")
+					$billingPhone.intlTelInput("setCountry", countryData.iso2)
+				}
+			})
+			$billingPhone.intlTelInput({
 				utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 				customContainer: "iti-shipping",
 				nationalMode: false,
@@ -232,26 +267,6 @@ const Root = {
 				initialCountry: "auto",
 				geoIpLookup: this.geoIpLookup,
 			})
-			$(".iti-shipping").after('<p class="error-msg"></p>')
-			$("input[name='shipping__phone']").on("countrychange", function () {
-				if (!this.isShowBilling) {
-					const countryData = $("input[name='shipping__phone']").intlTelInput("getSelectedCountryData")
-					$("input[name='billing__phone']").intlTelInput("setCountry", countryData.iso2)
-				}
-			})
-
-			$("input[name='billing__phone']").intlTelInput({
-				utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-				customContainer: "iti-billing",
-				nationalMode: false,
-				autoPlaceholder: "aggressive",
-				separateDialCode: true,
-				initialCountry: "auto",
-				geoIpLookup: this.geoIpLookup,
-			})
-			$(".iti-billing").after('<p class="error-msg"></p>')
-
-			this.itiErrors[-99] = "This input is required"
 		})
 	},
 	updated() {},
@@ -283,28 +298,6 @@ const Root = {
 				console.error("Error geoIpLookup", error)
 			}
 		},
-		itiShippingPhoneValid() {
-			if ($("input[name='shipping__phone']").intlTelInput("isValidNumber")) {
-				$(".iti-shipping").next(".error-msg").addClass("success-msg").text("Valid!")
-				return true
-			} else {
-				let code = $("input[name='shipping__phone']").intlTelInput("getValidationError")
-				console.log("Shipping Phone error code:", this.itiErrors[code])
-				$(".iti-shipping").next(".error-msg").removeClass("success-msg").text(this.itiErrors[code])
-				return false
-			}
-		},
-		itiBillingPhoneValid() {
-			if ($("input[name='billing__phone']").intlTelInput("isValidNumber")) {
-				$(".iti-billing").next(".error-msg").addClass("success-msg").text("Valid!")
-				return true
-			} else {
-				let code = $("input[name='billing__phone']").intlTelInput("getValidationError")
-				console.log("Billing Phone error code:", this.itiErrors[code])
-				$(".iti-billing").next(".error-msg").removeClass("success-msg").text(this.itiErrors[code])
-				return false
-			}
-		},
 	},
 	watch: {
 		"customerData.shippingAddress": {
@@ -312,16 +305,6 @@ const Root = {
 				this.updateBillingData()
 			},
 			deep: true,
-		},
-		"customerData.shippingAddress.phone": {
-			handler: function (newVal, oldVal) {
-				this.itiShippingPhoneValid()
-			},
-		},
-		"customerData.billingAddress.phone": {
-			handler: function (newVal, oldVal) {
-				this.itiBillingPhoneValid()
-			},
 		},
 	},
 }

@@ -21,7 +21,7 @@
                 type="radio" 
                 id="{{ variant.id }}" 
                 value="{{ variant.id }}"
-                name="id"
+                name="variant_id"
                 @click="selectedVariant = {{ variant.id }};"
                 {% if _checked == blank and variant.available %}
                   {% assign _checked = true %}
@@ -125,7 +125,7 @@
             <button 
               type="submit" 
               class="btn secondary"
-              @click="itiShippingPhoneValid(); itiBillingPhoneValid(); updateBillingData()"
+              @click="updateBillingData()"
             >Next Step</button>
             <!-- @click.prevent="isShowSecond = false; isShowThird = true;" -->
           </div>
