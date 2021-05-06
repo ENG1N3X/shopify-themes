@@ -1,7 +1,0 @@
-<a href="{{ article.url }}" class="article-item {{ classes }}">
-  <img src="{{ article.image.src | img_url: 'master' }}" alt="{{ article.title | truncatewords: 3, '...' }}">
-  <div class="content">
-    <time>{{ article.published_at | date: "%b %d, %Y" }}</time>
-    <h4>{{ article.title | truncatewords: 6, '...' }}</h4>
-  </div>
-</a>

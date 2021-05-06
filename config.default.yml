@@ -1,8 +1,4 @@
 prod:
-  password: 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
-  theme_id: "114006622391"
-  store: yuriyk.myshopify.com
-releases:
-  password: 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
-  theme_id: "122352107703"
+  password: key
+  theme_id: "id"
   store: yuriyk.myshopify.com

@@ -1,8 +1,0 @@
-<nav class="breadcrumbs">
-    {% for collection in product.collections %}
-        {% if collection.handle != "all" %}
-            <a href="{{ collection.url }}" class="hover-opacity">{{ collection.title }}</a>
-            {% break %}
-        {% endif %}
-    {% endfor %}
-</nav>
