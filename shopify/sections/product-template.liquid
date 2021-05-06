@@ -16,7 +16,7 @@
           </div>
         {% endfor %}
       </div>
-      <div id="product-slider-dots" class="owl-dots" {% if section.settings.dots == false %}style="display: none;"{% endif %}>
+      <div id="product-slider-dots" class="owl-dots hide" {% if section.settings.dots == false %}style="display: none;"{% endif %}>
         {% for image in product.images %}
           <div class="owl-dot">
             <img src="{{ image.src | img_url: 'master' }}" alt="{{ product.title | truncatewords: 3, '...' }}" />

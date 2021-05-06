@@ -20,9 +20,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 {% endif %}
 
-{%- comment -%}
-{{ "foundation-grid-weberous.min.css" | asset_url | stylesheet_tag }}
-{%- endcomment -%}
+{{ "foundation-grid-weberous.min.static.css" | asset_url | stylesheet_tag }}
 
 {%- comment -%}webpack bundle{%- endcomment -%}
 {{ 'bundle.css' | asset_url | stylesheet_tag }}

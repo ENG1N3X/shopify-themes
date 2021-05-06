@@ -181,7 +181,7 @@ theme.carouseles = (function () {
 			},
 		],
 		initializeOwlCarousel = (carousel) => ($(carousel.selector).length > 0 ? $(carousel.selector).owlCarousel(carousel.getSettings()) : false)
-	reInitializeOwlCarousel = (selector) => {
+	function reInitializeOwlCarousel(selector) {
 		$(selector).trigger("destroy.owl.carousel")
 		initializeOwlCarousel(owlCarouseles.filter((carousel) => carousel.selector == selector)[0])
 	}
@@ -322,5 +322,6 @@ $(function () {
 })
 
 $(window).on("load", function () {
+	console.log("DOM has been loaded.")
 	$("#page-preloader").fadeOut("slow")
 })

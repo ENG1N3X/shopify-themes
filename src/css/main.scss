@@ -4,7 +4,7 @@
 // @import "tailwindcss/utilities";
 
 // Foundation Sites
-@import "libs/foundation-grid-weberous.min.css";
+// @import "libs/foundation-grid-weberous.min.css";
 
 // Custom CSS
 @import "default-settings";
@@ -113,7 +113,7 @@ body.collection-template {
 }
 
 body.product-template {
-	section.recommendations {
+	section.product-recommendations {
 		position: relative;
 		padding: 110px 0;
 		.grid-container {
