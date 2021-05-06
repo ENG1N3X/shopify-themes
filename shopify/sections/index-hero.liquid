@@ -1,0 +1,25 @@
+<div class="grid-container">
+  {{ section.settings.textarea }}
+</div>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "class": "hero",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "textarea",
+      "label": "Text area",
+      "default": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem voluptatibus, laboriosam, nam alias esse fugiat dicta eveniet explicabo quo vel iste voluptatum culpa quidem veniam. Assumenda error eligendi eum aut."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero",
+      "category": "Home Page"
+    }
+  ]
+}
+{% endschema %}

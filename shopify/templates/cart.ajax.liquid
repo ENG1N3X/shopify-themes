@@ -1,0 +1,64 @@
+{% layout none %}
+
+<div class="cart-main">
+	{% if cart.item_count > 0 %}
+			{% for item in cart.items %}
+					<div class="cart-item">
+						<a href="{{ item.url }}" class="image">
+								<img src="{{ item.image | img_url: 'master' }}" alt="{{ item.title }}">
+						</a>
+						<div class="info">
+							<div>
+								<a href="{{ item.url }}" class="title hover-opacity">
+									{{- item.title | truncatewords: 7, '...' -}}
+								</a>
+								<span class="money">
+									{%- comment -%}
+									{% if item.quantity > 1 %}
+										{{- item.quantity -}}&nbsp;x
+									{% endif %}
+									{%- endcomment -%}
+									{{- item.original_line_price | money -}}
+								</span>
+							</div>
+							<div>
+								<span class="quantity">
+									qty:&nbsp;{{- item.quantity -}}
+								</span>
+								{% assign quantity = item.quantity %}
+								{% if quantity == 1 %}
+									{% assign quantity = 0 %}
+								{% elsif quantity > 1 %}
+									{% assign quantity = quantity | minus: 1 %}
+								{% endif %}
+								<button 
+										type="button"
+										class="btn"
+										value="{{ quantity }}"
+										data-item-key='{{ item.key }}'
+										data-remove-item-cart>
+										<i class="fas fa-trash"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+			{% endfor %}
+	{% else %}
+		<span class="no-items">No items in the cart</span>
+	{% endif %}
+</div>
+<div class="cart-footer">
+    <div class="grid-x align-justify margin-bottom-1">
+        <span class="total">Total:</span>
+        <span class="money">{{ cart.total_price | money }}</span>
+    </div>
+		{% if cart.item_count > 0 %}
+			<button type="submit" class="btn primary display-block width-100" name="checkout">
+				Go to the Checkout
+			</button>
+		{% endif %}
+</div>
+
+<script id="cartJSON" type="application/json">
+	{{ cart | json }}
+</script>

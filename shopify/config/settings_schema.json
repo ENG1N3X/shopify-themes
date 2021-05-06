@@ -1,0 +1,77 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Thirteen",
+    "theme_version": "1.0.0",
+    "theme_author": "Yuriy K. @eng1n3x",
+    "theme_documentation_url": "https:\/\/github.com\/ENG1N3X\/shopify-themes",
+    "theme_support_url": "https://github.com/uicrooks/shopify-theme-lab"
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "id": "favicon",
+        "type": "image_picker",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Social Links",
+    "settings": [
+      {
+        "type": "url",
+        "id": "instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "twitter",
+        "label": "Twitter"
+      },
+      {
+        "type": "url",
+        "id": "facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "vimeo",
+        "label": "Vimeo"
+      },
+      {
+        "type": "url",
+        "id": "youtube",
+        "label": "Youtube"
+      },
+      {
+        "type": "text",
+        "id": "email",
+        "label": "Email"
+      },
+      {
+        "type": "url",
+        "id": "pinterest",
+        "label": "Pinterest"
+      }
+    ]
+  },
+  {
+    "name": "Shipping Info",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "shipping-1",
+        "label": "Shipping #1",
+        "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, consectetur repellat ab ipsam, voluptates aspernatur atque maxime error ea nemo exercitationem perspiciatis temporibus non nam labore iure in reiciendis voluptatum."
+      },
+      {
+        "type": "textarea",
+        "id": "shipping-2",
+        "label": "Shipping #2",
+        "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, consectetur repellat ab ipsam, voluptates aspernatur atque maxime error ea nemo exercitationem perspiciatis temporibus non nam labore iure in reiciendis voluptatum."
+      }
+    ]
+  }
+]

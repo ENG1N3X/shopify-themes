@@ -1,0 +1,12 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+{% style %}
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('{{ 'open-sans-regular.static.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'open-sans-regular.static.woff' | asset_url }}') format('woff'),
+         url('{{ 'open-sans-regular.static.ttf' | asset_url }}') format('truetype'),;
+  }
+{% endstyle %}

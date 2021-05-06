@@ -1,0 +1,28 @@
+<div class="grid-container">
+
+  {{ blog.title }}
+
+  {% paginate blog.articles by 21 %}
+
+    <div class="grid-x grid-padding-x grid-padding-y">
+      {% for article in blog.articles %}
+
+        {% render 'article-snippet', article: article, classes: "cell small-12 medium-6 large-4" %}
+
+      {% endfor %}
+    </div>
+
+    {% render 'pagination-snippet', paginate: paginate %}
+
+  {% endpaginate %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Blog",
+  "tag": "section",
+  "class": "blog",
+  "settings": []
+}
+{% endschema %}

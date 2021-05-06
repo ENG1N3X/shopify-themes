@@ -1,0 +1,99 @@
+body.customer-template {
+	section.customer {
+		padding: 100px 0;
+		min-height: 65vh;
+		.grid-container {
+			max-width: 800px;
+			&.fluid {
+				max-width: 1200px;
+			}
+		}
+		.heading {
+			font-family: "Montserrat", sans-serif;
+			font-weight: normal;
+			font-weight: bold;
+			font-size: 32px;
+			margin: 0;
+		}
+		.subheading {
+			text-align: center;
+			font-size: 26px;
+		}
+		.form-login,
+		.form-recover,
+		.form-register,
+		.form-address,
+		.form-reset-activate {
+			.form-title {
+				font-family: "Montserrat", sans-serif;
+				font-weight: normal;
+				font-size: 40px;
+				text-align: center;
+				margin: 0;
+				margin-bottom: 20px;
+				padding-bottom: 20px;
+				border-bottom: 1px solid #ccc;
+			}
+			input,
+			select {
+				display: block;
+				width: 100%;
+				padding: 10px 5px;
+			}
+			select {
+				margin-bottom: 20px;
+			}
+			input[type="email"],
+			input[type="password"],
+			input[type="text"] {
+				cursor: pointer;
+				height: auto;
+				font-size: 14px;
+				background-color: #fff !important;
+				border: 1px solid #ccc !important;
+				margin: 0;
+				margin-bottom: 20px;
+				transition: opacity 0.3s linear;
+				opacity: 0.6;
+				&:hover {
+					transition: opacity 0.3s linear;
+					opacity: 1;
+				}
+				&:active,
+				&:focus {
+					box-shadow: none;
+				}
+			}
+		}
+		.info-text {
+			display: block;
+			margin-bottom: 10px;
+		}
+		.info-link {
+			color: #000;
+			transition: opacity 0.3s linear;
+			&:hover {
+				transition: opacity 0.3s linear;
+				opacity: 0.8;
+			}
+		}
+		.btn {
+			max-width: 100%;
+			&.primary {
+				margin-bottom: 20px;
+			}
+			&.btn-switch-forgot {
+				text-decoration: underline;
+				margin-left: auto;
+				margin-bottom: 10px;
+			}
+			&.btn-paginate {
+				width: 150px;
+				margin: 5px;
+				padding: 10px;
+				text-transform: uppercase;
+				border: 1px solid #000;
+			}
+		}
+	}
+}

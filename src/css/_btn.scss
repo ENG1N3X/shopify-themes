@@ -1,0 +1,36 @@
+.btn {
+	display: inline-block;
+	cursor: pointer;
+	text-align: center;
+	border: none;
+	text-decoration: none;
+	&:disabled {
+		cursor: default;
+		opacity: 0.6;
+	}
+	&.primary {
+		font-family: "Montserrat", sans-serif;
+		font-style: normal;
+		font-weight: normal;
+		font-size: rem(16);
+		line-height: 1.25;
+		letter-spacing: -0.045em;
+		text-transform: uppercase;
+		color: #fff;
+		background: #000;
+		padding: 10px 20px;
+	}
+	&.secondary {
+		font-family: "Montserrat", sans-serif;
+		font-style: normal;
+		font-weight: 600;
+		font-size: rem(16);
+		line-height: 1.25;
+		text-align: center;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: #000;
+		background: #fff;
+		padding: 10px 20px;
+	}
+}

@@ -1,0 +1,113 @@
+// padding for submit button page
+.shopify-challenge__container {
+	padding: 200px 0;
+	@media (max-width: 639px) {
+		padding: 100px 0;
+	}
+}
+
+// keyframes
+@keyframes anim-rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+input,
+button,
+form,
+select,
+textarea {
+	&:focus,
+	&:active {
+		box-shadow: none;
+		outline: none;
+	}
+}
+
+.align-spaced-small {
+	@media (max-width: 639px) {
+		justify-content: space-around;
+	}
+}
+
+.align-center-small {
+	@media (max-width: 639px) {
+		justify-content: center;
+	}
+}
+
+.text-center-medium {
+	@media (max-width: 1023px) {
+		text-align: center;
+	}
+}
+
+.text-center-small {
+	@media (max-width: 639px) {
+		text-align: center;
+	}
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 50px 0;
+	a {
+		display: block;
+		margin: 0 20px;
+		i {
+			color: #000;
+			font-size: 22px;
+		}
+	}
+}
+
+#page-preloader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 99999999;
+	background-repeat: no-repeat;
+	background-color: #fff;
+	background-position: center;
+}
+
+.ring-loader {
+	display: inline-block;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 30px;
+	height: 30px;
+	div {
+		box-sizing: border-box;
+		display: block;
+		position: absolute;
+		width: 24px;
+		height: 24px;
+		margin: 4px;
+		border: 3px solid #000;
+		border-radius: 50%;
+		animation: anim-rotate 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+		border-color: #000 transparent transparent transparent;
+		&:nth-child(1) {
+			animation-delay: -0.45s;
+		}
+		&:nth-child(2) {
+			animation-delay: -0.3s;
+		}
+		&:nth-child(3) {
+			animation-delay: -0.15s;
+		}
+	}
+}
