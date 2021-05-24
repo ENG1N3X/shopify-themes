@@ -19,7 +19,7 @@
                 data-loop="true"
                 data-items="{{ section.settings.range_2 }}"
                 data-autoplay="false">
-                {% for product in recommendations.products %}
+                {% for product in recommendations.products %}         
                     {% render "product-snippet", product: product, classes: "" %}
                 {% endfor %}
             </div>

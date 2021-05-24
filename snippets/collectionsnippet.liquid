@@ -1,0 +1,124 @@
+<script>
+  
+                let Tests = {};
+              
+                let test = localStorage.getItem("ABTID")
+                let testVar = localStorage.getItem("ABTV")
+                  let donePrice = false
+                  let doneTitle = false
+                  let doneDesc = false
+                  let totalLoops = 0
+                let goThroughPrice = (item, cycle) => {
+                let foundSpan = false
+                let foundTitle = false
+                let foundDesc = false
+                  let price1 = Tests[test]["0"]["price"]
+                  let price2 = Tests[test]["0"]["price"].split(".")[0]
+                  let price3 = Tests[test]["0"]["price"].split(".")[0] +".0"
+                  let title = Tests[test]["0"]["title"]
+                  let desc = Tests[test]["0"]["description"]
+                for (const atag of item.querySelectorAll("span, h1, h2, h3, h4, h5, h6, p, div, li")) {
+                  let foundprice1 = atag.textContent.includes(price1)
+                  let foundprice2 = atag.textContent.includes(price2)
+                  let foundprice3 = atag.textContent.includes(price3)
+                  let foundT = atag.textContent.includes(title) && atag.className != "visually-hidden"
+                  let foundD = atag.textContent.includes(desc)
+              
+                if (foundprice1 || foundprice2 || foundprice3) {
+                  let searchPrice
+                  let newPrice = Tests[test][testVar]["price"]
+                  if(foundprice1){
+                  searchPrice = price1
+                  }
+                      if(foundprice2){
+                  searchPrice = price2
+                  newPrice = newPrice.split(".")[0]
+                  }
+                      if(foundprice3){
+                  searchPrice = price3
+                      newPrice = newPrice.split(".")[0] + ".0"
+                  }
+                  foundSpan = true
+                  let content = atag.innerHTML
+                  content = content.replace(searchPrice, newPrice)
+                  atag.innerHTML = content
+                }
+                    if (foundT && !doneTitle) {
+                  let newTitle = Tests[test][testVar]["title"]
+              
+                  foundTitle = true
+                  let content = atag.innerHTML
+                  content = content.replace(title, newTitle)
+                  atag.innerHTML = content
+                  doneTitle = true
+                }
+                        if (foundD && !doneDesc) {
+                  let newDesc = Tests[test][testVar]["description"]
+              
+                  foundTitle = true
+                  let content = atag.innerHTML
+                  content = content.replace(desc, newDesc)
+                  atag.innerHTML = content
+                  doneDesc = true
+                }
+              }
+              
+                if((foundSpan === false || foundTitle === false || foundDesc === false) && cycle === 2){                  
+                  totalLoops = totalLoops + 1
+                  if(totalLoops < 8){
+                goThroughPrice(item.parentNode, 2)
+                  }
+                } 
+                  if((foundSpan === false || foundTitle === false || foundDesc === false) && cycle === 1){
+                    donePrice = false
+                  return false
+                }
+                    if((foundSpan === false && foundTitle === false && foundDesc === false) && cycle === 2){
+                      console.log("return done")
+                      donePrice = true
+                  return true
+                }
+                        if((foundSpan === false && foundTitle === false && foundDesc === false) && cycle === 1){
+                          donePrice = true
+                  return true
+                }
+              }
+              
+              
+                let element
+                let collectFunc = () => {
+                if(Tests[test] != undefined){
+                  if(testVar != "0"){
+                  
+              
+                for (const a of document.querySelectorAll("a")) {
+                  let endUrl = a.href.substring(a.href.lastIndexOf('/') + 1).split('?').slice(0)[0]
+                  
+                if (endUrl == (Tests[test]["0"]["url"]) && a.href.includes("facebook") === false && a.href.includes("twitter") === false && a.href.includes("pinterest") === false ) {
+              element = a
+              if(goThroughPrice(element, 1) === true){
+                donePrice = true
+              break
+              }
+                }
+              }
+                if(donePrice === false){
+                for (const a of document.querySelectorAll("a")) {
+                  let endUrl = a.href.substring(a.href.lastIndexOf('/') + 1).split('?').slice(0)[0]
+                if (endUrl == (Tests[test]["0"]["url"]) && a.href.includes("facebook") === false && a.href.includes("twitter") === false && a.href.includes("pinterest") === false ) {
+              element = a
+                  goThroughPrice(element, 2)
+              if(donePrice === true){
+                break
+                donePrice = true
+              }
+                }
+              }
+                }
+                  }
+                }
+            }
+            window.addEventListener('load', function () {
+                collectFunc()
+            })
+              </script>

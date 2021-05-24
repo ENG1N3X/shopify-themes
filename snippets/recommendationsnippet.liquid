@@ -1,0 +1,39 @@
+<script>
+                let TestsRec = {};
+                
+                let testRec = localStorage.getItem("ABTID")
+                let testVarRec = localStorage.getItem("ABTV")
+                
+                let itemsRec = document.getElementsByClassName("remove-product-eab")
+                let dontRemoveArr = []
+                for (let item in TestsRec){
+                  let dontRemove
+                  if(TestsRec[testRec] != undefined){
+                    if(TestsRec[item] === TestsRec[testRec]){
+                  dontRemove = TestsRec[testRec][testVarRec]
+                    } else{
+                   dontRemove = TestsRec[item]["0"]
+                    }
+                  } else {
+                   dontRemove = TestsRec[item]["0"]
+                  }
+                  dontRemoveArr.push(dontRemove)  
+                }
+                let removeItem = () => {
+                let actualItems = document.getElementsByClassName("remove-product-eab")
+                
+                if(dontRemoveArr.includes(itemsRec[0].id) === false){
+                      itemsRec[0].nextElementSibling.remove()
+                }
+                  itemsRec[0].remove()
+                if(itemsRec[0] != undefined){
+                removeItem()
+                }
+                }
+                window.addEventListener('load', function () {
+                    if(itemsRec[0] != undefined){
+                        removeItem()
+                        }
+                })
+                
+                </script>
