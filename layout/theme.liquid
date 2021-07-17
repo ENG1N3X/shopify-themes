@@ -16,7 +16,6 @@
 
   {% render "style-tags" %}
   {% render "script-tags" %}
- {%- if content_for_header contains "elevateab.app" -%}{%- unless request.design_mode -%} {% render "redirectsnippet" %} {%- endunless -%}{%- endif -%} </head>
 <body class="{% if template.name == "404" %}error-template{% elsif template contains "customers" %}customer-template{% else %}{{ template.name }}-template{% endif %} {% if template.suffix %}{{ template.suffix }}{% endif %}">
   <div id="page-preloader"></div>
 
@@ -30,12 +29,4 @@
 
   {% section 'footer' %}
 </body>
-</html>{%- if content_for_header contains "elevateab.app" and (request.page_type == 'collection' or request.page_type == 'index') -%}
-        {%- unless request.design_mode -%}
-        {% render "collectionsnippet" %}
-        {%- endunless -%}
-        {%- endif -%}{%- if content_for_header contains "elevateab.app" and request.page_type == 'product'-%}
-        {%- unless request.design_mode -%}
-        {% render "recommendationsnippet" %}
-        {%- endunless -%}
-        {%- endif -%}
+</html>

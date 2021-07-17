@@ -239,15 +239,25 @@ textarea {
 	position: relative;
 	display: block;
 	text-decoration: none;
-	transition: all 0.3s linear;
+	border: 1px solid transparent;
+	padding: 5px;
+	transition: border-color 0.3s linear;
 	&:hover {
-		border: 1px solid #000;
+		transition: border-color 0.3s linear;
+		border-color: #000;
 	}
 	.sold-out {
 	}
 	.tag {
 	}
+	.title {
+		margin: 5px 0;
+		text-transform: uppercase;
+		color: cadetblue;
+	}
 	.money {
+		display: flex;
+		color: #fa3939;
 		.compare {
 		}
 	}
@@ -265,6 +275,10 @@ header {
 
 footer {
 	position: relative;
+}
+
+section.products-list-section {
+	padding: 50px 0;
 }
 
 body.index-template {

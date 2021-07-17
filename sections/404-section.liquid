@@ -1,8 +1,35 @@
-{% layout '404' %}
-
 <h1 class="heading">
     {{ section.settings.heading }}
 </h1>
+
+{% schema %}
+{
+    "name": "404 section",
+    "tag": "section",
+    "class": "error grid-container",
+    "settings": [
+        {
+            "type": "textarea",
+            "id": "heading",
+            "label": "Heading",
+            "default": "Page Not found!"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Sections",
+            "name": "404"
+        }
+    ]
+}
+{% endschema %}
+
+{%- comment -%}
+
+{% layout '404' %}
+
+
+
 <p class="text">
     {{ section.settings.textarea }}
 </p>
@@ -35,3 +62,4 @@
     ]
 }
 {% endschema %}
+{%- endcomment -%}

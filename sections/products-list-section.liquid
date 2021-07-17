@@ -1,0 +1,24 @@
+{% assign collection = collections[section.settings.collection] %}
+
+<div class="grid-container">
+  <div class="grid-x grid-padding-x grid-padding-y">
+    {% for product in collection.products %}
+      {% render 'product-snippet', product: product, classes: "cell small-12 medium-4" %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Products list",
+  "tag": "section",
+  "class": "products-list-section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ]
+}
+{% endschema %}
